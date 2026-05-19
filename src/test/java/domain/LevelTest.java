@@ -1,0 +1,84 @@
+package domain;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Pruebas unitarias para la clase {@link Level}.
+ * Verifica la lógica de completado del nivel, el restablecimiento
+ * de monedas y jugador, y los métodos de acceso a sus elementos.
+ * Los métodos siguen el estándar should/shouldNot para describir
+ * el comportamiento esperado de forma clara y legible.
+ */
+class LevelTest {
+
+    private Level level;
+    private Player player;
+    private Coin coin;
+    private Enemy enemy;
+
+    @BeforeEach
+    void setUp() {
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+
+        player = new Player(50, 240);
+        coin   = new Coin(400, 240);
+        enemy  = new Enemy(300, 240, 3, 0, 800, 500);
+
+        level = new Level(1, board, List.of(enemy), List.of(coin));
+    }
+
+    /** El nivel no debería estar completado cuando la moneda no ha sido recogida. */
+    @Test
+    void shouldNotBeCompletedWhenCoinIsNotCollected() {
+        assertFalse(level.isCompleted());
+    }
+
+    /** El nivel debería marcarse como completado cuando todas las monedas han sido recogidas. */
+    @Test
+    void shouldBeCompletedWhenAllCoinsAreCollected() {
+        coin.collect();
+        assertTrue(level.isCompleted());
+    }
+
+    /** El nivel debería restablecer las monedas a no recogidas al llamar reset(). */
+    @Test
+    void shouldResetCoinsToNotCollectedAfterReset() {
+        coin.collect();
+        level.reset(player);
+        assertFalse(coin.isCollected());
+    }
+
+    /** El nivel debería reposicionar al jugador dentro del área de la StartZone al llamar reset(). */
+    @Test
+    void shouldRepositionPlayerInsideStartZoneAfterReset() {
+        player.setPosition(600, 300);
+        level.reset(player);
+        assertTrue(player.getX() >= 20 && player.getX() <= 100);
+        assertTrue(player.getY() >= 200 && player.getY() <= 300);
+    }
+
+    /** El nivel debería retornar el número correcto al llamar getLevelNumber(). */
+    @Test
+    void shouldReturnCorrectLevelNumber() {
+        assertEquals(1, level.getLevelNumber());
+    }
+
+    /** El nivel debería retornar la lista de enemigos con el tamaño correcto. */
+    @Test
+    void shouldReturnCorrectNumberOfEnemies() {
+        assertEquals(1, level.getEnemies().size());
+    }
+
+    /** El nivel debería retornar la lista de monedas con el tamaño correcto. */
+    @Test
+    void shouldReturnCorrectNumberOfCoins() {
+        assertEquals(1, level.getCoins().size());
+    }
+}
