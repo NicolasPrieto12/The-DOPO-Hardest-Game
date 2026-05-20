@@ -81,7 +81,7 @@ public class LevelPvP {
      * @return true si todas las monedas están recogidas.
      */
     public boolean isCompleted() {
-        return coins.stream().allMatch(Coin::isCollected);
+        return !coins.isEmpty() && coins.stream().allMatch(Coin::isCollected);
     }
 
     /**

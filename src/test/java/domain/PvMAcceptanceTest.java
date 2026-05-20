@@ -139,7 +139,15 @@ class PvMAcceptanceTest {
      */
     @Test
     void shouldSetTimeoutWhenTimeLimitIsReachedInPvM() {
-        GamePvM game = buildGame(MachineProfile.RANDOM);
+        Player        player  = new Player(50, 240);
+        MachinePlayer machine = new MachinePlayer(730, 240, MachineProfile.RANDOM);
+        BoardPvP board = new BoardPvP(start1, start2, end1, end2, List.of());
+        LevelPvP emptyLevel = new LevelPvP(1, board,
+            new ArrayList<>(), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>()
+        );
+        GamePvM game = new GamePvM(player, machine, List.of(emptyLevel));
+        game.start();
         for (int i = 0; i < 180 * 60; i++) game.update();
         assertEquals(GameState.TIMEOUT, game.getState());
     }
