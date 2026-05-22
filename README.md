@@ -187,7 +187,22 @@ El proyecto cuenta con **8 clases de prueba** con más de **40 casos de prueba**
 
 > Ejecutar con: `Run > Run with Coverage` sobre el directorio `src/test/java/domain/`
 
+> ⚠️ **IMPORTANTE:** Tomar el screenshot del reporte de coverage en IntelliJ y guardarlo como `docs/coverage.png` para que aparezca aqui.
+
 ![Coverage Report](docs/coverage.png)
+
+Clases cubiertas por las pruebas:
+
+| Clase | Tipo de prueba |
+|-------|----------------|
+| `Game` | Unitaria + Aceptacion |
+| `Player` | Unitaria |
+| `Coin` | Unitaria |
+| `Enemy` | Unitaria |
+| `Level` | Unitaria |
+| `GamePvP` | Aceptacion |
+| `GamePvM` | Aceptacion |
+| `LevelPvP` | Aceptacion (indirecta) |
 
 ### Análisis Estático
 
