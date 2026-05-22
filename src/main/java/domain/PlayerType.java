@@ -5,6 +5,13 @@ import java.awt.Color;
 /**
  * Define los tipos de jugador disponibles en el juego.
  * Cada tipo tiene su propio color, velocidad base y tamaño base.
+ *
+ * <p>Tipos disponibles:</p>
+ * <ul>
+ *   <li>{@link #RED}: estado base, velocidad 3, tamaño 20</li>
+ *   <li>{@link #BLUE}: obtenido con SkinCoin, velocidad 4, tamaño 30</li>
+ *   <li>{@link #GREEN}: obtenido con GreenCoin, velocidad 3, tamaño 20, resistente</li>
+ * </ul>
  */
 public enum PlayerType {
 
