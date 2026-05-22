@@ -75,14 +75,16 @@ public class GameGUI extends JFrame {
         repaint();
     }
 
-    /** Inicia el modo un jugador con los dos niveles. */
+    /** Inicia el modo un jugador con los tres niveles. */
     public void startGame() {
         Player player = new Player(0, 0, PlayerType.RED);
         Level  level1 = LevelFactory.buildSingleLevel1(player);
         Level  level2 = LevelFactory.buildSingleLevel2(player);
+        Level  level3 = LevelFactory.buildSingleLevel3(player);
+        Level  level4 = LevelFactory.buildSingleLevel4(player);
 
         Game.resetInstance();
-        currentGame = Game.getInstance(player, List.of(level1, level2));
+        currentGame = Game.getInstance(player, List.of(level1, level2, level3, level4));
         currentGame.start();
 
         getContentPane().removeAll();
@@ -95,14 +97,16 @@ public class GameGUI extends JFrame {
         gamePanel.requestFocusInWindow();
     }
 
-    /** Inicia el modo PvP con los dos niveles. */
+    /** Inicia el modo PvP con los tres niveles. */
     public void startPvP() {
         Player p1 = new Player(0, 0, PlayerType.RED);
         Player p2 = new Player(0, 0, PlayerType.RED);
         LevelPvP l1 = LevelFactory.buildPvPLevel1(p1, p2);
         LevelPvP l2 = LevelFactory.buildPvPLevel2(p1, p2);
+        LevelPvP l3 = LevelFactory.buildPvPLevel3(p1, p2);
+        LevelPvP l4 = LevelFactory.buildPvPLevel4(p1, p2);
 
-        currentPvP = new GamePvP(p1, p2, List.of(l1, l2));
+        currentPvP = new GamePvP(p1, p2, List.of(l1, l2, l3, l4));
         currentPvP.start();
 
         getContentPane().removeAll();
@@ -113,6 +117,21 @@ public class GameGUI extends JFrame {
         revalidate();
         repaint();
         pvpPanel.requestFocusInWindow();
+    }
+
+    /** Muestra el panel de instrucciones. */
+    public void showInstructions() {
+        if (gamePanel != null) { gamePanel.stopTimer(); gamePanel = null; }
+        if (pvpPanel  != null) { pvpPanel.stopTimer();  pvpPanel  = null; }
+        if (pvmPanel  != null) { pvmPanel.stopTimer();  pvmPanel  = null; }
+        getContentPane().removeAll();
+        InstructionsPanel panel = new InstructionsPanel(this);
+        panel.setPreferredSize(new Dimension(800, 500));
+        add(panel);
+        pack();
+        setLocationRelativeTo(null);
+        revalidate();
+        repaint();
     }
 
     /** Muestra el panel de selección de perfil para el modo PvM. */
@@ -140,8 +159,10 @@ public class GameGUI extends JFrame {
         MachinePlayer machine = new MachinePlayer(0, 0, profile);
         LevelPvP l1 = LevelFactory.buildPvMLevel1(player, machine);
         LevelPvP l2 = LevelFactory.buildPvMLevel2(player, machine);
+        LevelPvP l3 = LevelFactory.buildPvMLevel3(player, machine);
+        LevelPvP l4 = LevelFactory.buildPvMLevel4(player, machine);
 
-        currentPvM = new GamePvM(player, machine, List.of(l1, l2));
+        currentPvM = new GamePvM(player, machine, List.of(l1, l2, l3, l4));
         currentPvM.start();
 
         getContentPane().removeAll();

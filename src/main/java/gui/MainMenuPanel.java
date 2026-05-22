@@ -32,15 +32,18 @@ public class MainMenuPanel extends JPanel {
         JButton btnSingle = createButton("1 Jugador");
         JButton btnPvP    = createButton("Jugador vs Jugador");
         JButton btnPvM    = createButton("Jugador vs Máquina");
+        JButton btnInstr  = createButton("Instrucciones");
 
         btnSingle.addActionListener(e -> window.startGame());
         btnPvP.addActionListener(e -> window.startPvP());
         btnPvM.addActionListener(e -> window.showModeSelection());
+        btnInstr.addActionListener(e -> window.showInstructions());
 
         gbc.gridy = 0; add(title, gbc);
         gbc.gridy = 1; add(btnSingle, gbc);
         gbc.gridy = 2; add(btnPvP, gbc);
         gbc.gridy = 3; add(btnPvM, gbc);
+        gbc.gridy = 4; add(btnInstr, gbc);
     }
 
     /**

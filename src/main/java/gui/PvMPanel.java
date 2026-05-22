@@ -36,6 +36,16 @@ public class PvMPanel extends JPanel implements ActionListener {
         setBackground(Color.LIGHT_GRAY);
         setFocusable(true);
 
+        JButton btnSkip = new JButton("Pasar nivel");
+        btnSkip.setFont(new Font("Arial", Font.BOLD, 13));
+        btnSkip.setBackground(new Color(20, 130, 60));
+        btnSkip.setForeground(Color.WHITE);
+        btnSkip.setFocusPainted(false);
+        btnSkip.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnSkip.setBounds(680, 425, 110, 30);
+        btnSkip.addActionListener(e -> { game.skipLevel(); requestFocusInWindow(); });
+        add(btnSkip);
+
         JButton btnRestart = new JButton("Reiniciar");
         btnRestart.setFont(new Font("Arial", Font.BOLD, 13));
         btnRestart.setBackground(new Color(200, 40, 40));

@@ -30,6 +30,16 @@ public class GamePanel extends JPanel implements ActionListener {
         setBackground(Color.LIGHT_GRAY);
         setFocusable(true);
 
+        JButton btnSkip = new JButton("Pasar nivel");
+        btnSkip.setFont(new Font("Arial", Font.BOLD, 13));
+        btnSkip.setBackground(new Color(20, 130, 60));
+        btnSkip.setForeground(Color.WHITE);
+        btnSkip.setFocusPainted(false);
+        btnSkip.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        btnSkip.setBounds(680, 425, 110, 30);
+        btnSkip.addActionListener(e -> { game.nextLevel(); requestFocusInWindow(); });
+        add(btnSkip);
+
         JButton btnRestart = new JButton("Reiniciar");
         btnRestart.setFont(new Font("Arial", Font.BOLD, 13));
         btnRestart.setBackground(new Color(200, 40, 40));
@@ -110,6 +120,9 @@ public class GamePanel extends JPanel implements ActionListener {
         if (p.getType() == PlayerType.BLUE) {
             g.setColor(new Color(30, 100, 220));
             g.drawString("★ Inky", 10, 40);
+        } else if (p.getType() == PlayerType.GREEN) {
+            g.setColor(new Color(0, 180, 60));
+            g.drawString("★ Clyde" + (p.isShielded() ? " [Escudo]" : " [Sin escudo]"), 10, 40);
         }
     }
 

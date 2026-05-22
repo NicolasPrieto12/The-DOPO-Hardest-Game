@@ -18,6 +18,43 @@ public class LevelFactory {
     private static final int BH = 500;
     private static final int WT = 20;
 
+    /**
+     * Paredes del nivel 3 (difícil): laberinto en zigzag con pasillos estrechos
+     * y zonas cerradas que obligan a rutas peligrosas.
+     */
+    private static List<Rectangle> buildLevel3Walls() {
+        return new ArrayList<>(List.of(
+            // Borde exterior
+            new Rectangle(0,   0,   BW, WT),
+            new Rectangle(0,   BH - WT, BW, WT),
+            new Rectangle(0,   0,   WT, BH),
+            new Rectangle(BW - WT, 0, WT, BH),
+            // Muro horizontal superior izquierdo (deja pasillo arriba)
+            new Rectangle(100, 100, 200, WT),
+            // Muro vertical izquierdo central
+            new Rectangle(100, 100, WT, 150),
+            // Muro horizontal central izquierdo (deja pasillo abajo)
+            new Rectangle(100, 250, 160, WT),
+            // Muro horizontal superior derecho
+            new Rectangle(500, 100, 200, WT),
+            // Muro vertical derecho central
+            new Rectangle(680, 100, WT, 150),
+            // Muro horizontal central derecho
+            new Rectangle(540, 250, 160, WT),
+            // Muro horizontal inferior izquierdo
+            new Rectangle(100, 370, 200, WT),
+            // Muro horizontal inferior derecho
+            new Rectangle(500, 370, 200, WT),
+            // Bloque central superior
+            new Rectangle(330, 130, 140, WT),
+            // Bloque central inferior
+            new Rectangle(330, 340, 140, WT),
+            // Muros verticales centrales (crean pasillo angosto)
+            new Rectangle(330, 130, WT, 100),
+            new Rectangle(450, 130, WT, 100)
+        ));
+    }
+
     // =============================================
     // PAREDES COMPARTIDAS
     // =============================================
@@ -414,6 +451,368 @@ public class LevelFactory {
             List.of(patrol1, patrol2, patrol3),
             coins, skinCoins,
             List.of(cp)
+        );
+    }
+
+    /**
+     * Paredes del nivel 4: diseño en forma de cruz con corredores diagonales
+     * y zonas cerradas en las esquinas. Completamente distinto a los niveles anteriores.
+     */
+    private static List<Rectangle> buildLevel4Walls() {
+        return new ArrayList<>(List.of(
+            // Borde exterior
+            new Rectangle(0,       0,       BW, WT),
+            new Rectangle(0,       BH - WT, BW, WT),
+            new Rectangle(0,       0,       WT, BH),
+            new Rectangle(BW - WT, 0,       WT, BH),
+            // Cruz central horizontal
+            new Rectangle(200, 230, 160, WT),
+            new Rectangle(440, 230, 160, WT),
+            // Cruz central vertical
+            new Rectangle(380, 80,  WT, 140),
+            new Rectangle(380, 280, WT, 140),
+            // Bloques esquina superior izquierda
+            new Rectangle(80,  80,  120, WT),
+            new Rectangle(80,  80,  WT,  120),
+            // Bloques esquina superior derecha
+            new Rectangle(600, 80,  120, WT),
+            new Rectangle(700, 80,  WT,  120),
+            // Bloques esquina inferior izquierda
+            new Rectangle(80,  390, 120, WT),
+            new Rectangle(80,  270, WT,  120),
+            // Bloques esquina inferior derecha
+            new Rectangle(600, 390, 120, WT),
+            new Rectangle(700, 270, WT,  120),
+            // Muros internos que crean pasillos en zigzag
+            new Rectangle(200, 130, WT, 100),
+            new Rectangle(580, 130, WT, 100),
+            new Rectangle(200, 310, WT, 100),
+            new Rectangle(580, 310, WT, 100)
+        ));
+    }
+
+    // =============================================
+    // NIVEL 3 - DIFICIL (los tres modos)
+    // =============================================
+
+    /**
+     * Helper para crear los 10 enemigos del nivel 3.
+     * 5 SliderEnemy (Tipo V) + 5 AcceleratedEnemy (Tipo A).
+     */
+    private static void addLevel3Enemies(List<SliderEnemy> sliders,
+                                         List<AcceleratedEnemy> accelerated,
+                                         List<Rectangle> walls,
+                                         List<Rectangle> forbidden) {
+        // 5 Deslizadores verticales (Tipo V) - velocidad 2
+        int[][] sliderPos = {{200, 60}, {400, 60}, {480, 280}, {300, 280}, {150, 200}};
+        for (int[] p : sliderPos) {
+            SliderEnemy s = new SliderEnemy(p[0], p[1], 2, BH);
+            s.setWalls(walls);
+            for (Rectangle f : forbidden) s.addForbiddenZone(f);
+            sliders.add(s);
+        }
+        // 5 Acelerados (Tipo A) - velocidad 6, alternando horizontal y vertical
+        int[][] accPos  = {{250, 420}, {550, 420}, {400, 300}, {200, 350}, {550, 350}};
+        int[]   accDx   = {  6,          -6,          6,          0,           0};
+        int[]   accDy   = {  0,           0,          0,          6,          -6};
+        for (int i = 0; i < accPos.length; i++) {
+            AcceleratedEnemy a = new AcceleratedEnemy(
+                accPos[i][0], accPos[i][1], accDx[i], accDy[i], BW, BH);
+            a.setWalls(walls);
+            for (Rectangle f : forbidden) a.addForbiddenZone(f);
+            accelerated.add(a);
+        }
+    }
+
+    /**
+     * Nivel 3 single (difícil): laberinto zigzag, 8 monedas, 1 GreenCoin,
+     * 5 SliderEnemy + 5 AcceleratedEnemy, 6 bombas.
+     */
+    public static Level buildSingleLevel3(Player player) {
+        int zoneW = 70, zoneH = 100;
+        int zoneY = BH / 2 - zoneH / 2;
+
+        StartZone start = new StartZone(WT, zoneY, zoneW, zoneH);
+        EndZone   end   = new EndZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+
+        List<Rectangle> walls = buildLevel3Walls();
+        Board board = new Board(start, end, walls);
+
+        player.setWalls(walls);
+        player.setStartPosition(
+            start.getX() + start.getWidth()  / 2 - player.getSize() / 2,
+            start.getY() + start.getHeight() / 2 - player.getSize() / 2
+        );
+        player.respawn();
+
+        List<Coin> coins = List.of(
+            new Coin(160, 60),  new Coin(400, 60),
+            new Coin(160, 310), new Coin(400, 310),
+            new Coin(580, 60),  new Coin(580, 310),
+            new Coin(280, 430), new Coin(480, 430)
+        );
+        GreenCoin greenCoin = new GreenCoin(390, 230);
+
+        List<Bomb> bombs = List.of(
+            new Bomb(220, 160), new Bomb(540, 160),
+            new Bomb(220, 300), new Bomb(540, 300),
+            new Bomb(350, 60),  new Bomb(350, 400)
+        );
+
+        List<Rectangle> forbidden = List.of(rect(start), rect(end));
+        List<SliderEnemy>      sliders     = new ArrayList<>();
+        List<AcceleratedEnemy> accelerated = new ArrayList<>();
+        addLevel3Enemies(sliders, accelerated, walls, forbidden);
+
+        return new Level(3, board,
+            new ArrayList<>(), new ArrayList<>(),
+            coins, new ArrayList<>(), new ArrayList<>(),
+            sliders, accelerated, bombs, greenCoin
+        );
+    }
+
+    /**
+     * Nivel 3 PvP (difícil): mismo diseño que single nivel 3.
+     */
+    public static LevelPvP buildPvPLevel3(Player p1, Player p2) {
+        int zoneW = 70, zoneH = 100;
+        int zoneY = BH / 2 - zoneH / 2;
+
+        StartZone start1 = new StartZone(WT, zoneY, zoneW, zoneH);
+        EndZone   end1   = new EndZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        StartZone start2 = new StartZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        EndZone   end2   = new EndZone(WT, zoneY, zoneW, zoneH);
+
+        List<Rectangle> walls = buildLevel3Walls();
+        BoardPvP board = new BoardPvP(start1, start2, end1, end2, walls);
+
+        setupPlayerPvP(p1, walls, start1);
+        setupPlayerPvP(p2, walls, start2);
+
+        List<Coin> coins = List.of(
+            new Coin(160, 60),  new Coin(400, 60),
+            new Coin(160, 310), new Coin(400, 310),
+            new Coin(580, 60),  new Coin(580, 310),
+            new Coin(280, 430), new Coin(480, 430)
+        );
+        GreenCoin greenCoin = new GreenCoin(390, 230);
+
+        List<Bomb> bombs = List.of(
+            new Bomb(220, 160), new Bomb(540, 160),
+            new Bomb(220, 300), new Bomb(540, 300),
+            new Bomb(350, 60),  new Bomb(350, 400)
+        );
+
+        List<Rectangle> forbidden = List.of(rect(start1), rect(start2));
+        List<SliderEnemy>      sliders     = new ArrayList<>();
+        List<AcceleratedEnemy> accelerated = new ArrayList<>();
+        addLevel3Enemies(sliders, accelerated, walls, forbidden);
+
+        return new LevelPvP(3, board,
+            new ArrayList<>(), new ArrayList<>(),
+            coins, new ArrayList<>(), new ArrayList<>(),
+            sliders, accelerated, bombs, greenCoin
+        );
+    }
+
+    /**
+     * Nivel 3 PvM (difícil): mismo diseño que PvP nivel 3.
+     */
+    public static LevelPvP buildPvMLevel3(Player player, MachinePlayer machine) {
+        int zoneW = 70, zoneH = 100;
+        int zoneY = BH / 2 - zoneH / 2;
+
+        StartZone start1 = new StartZone(WT, zoneY, zoneW, zoneH);
+        EndZone   end1   = new EndZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        StartZone start2 = new StartZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        EndZone   end2   = new EndZone(WT, zoneY, zoneW, zoneH);
+
+        List<Rectangle> walls = buildLevel3Walls();
+        BoardPvP board = new BoardPvP(start1, start2, end1, end2, walls);
+
+        setupPlayerPvP(player,  walls, start1);
+        setupPlayerPvP(machine, walls, start2);
+
+        List<Coin> coins = List.of(
+            new Coin(160, 60),  new Coin(400, 60),
+            new Coin(160, 310), new Coin(400, 310),
+            new Coin(580, 60),  new Coin(580, 310),
+            new Coin(280, 430), new Coin(480, 430)
+        );
+        GreenCoin greenCoin = new GreenCoin(390, 230);
+
+        List<Bomb> bombs = List.of(
+            new Bomb(220, 160), new Bomb(540, 160),
+            new Bomb(220, 300), new Bomb(540, 300),
+            new Bomb(350, 60),  new Bomb(350, 400)
+        );
+
+        List<Rectangle> forbidden = List.of(rect(start1), rect(start2));
+        List<SliderEnemy>      sliders     = new ArrayList<>();
+        List<AcceleratedEnemy> accelerated = new ArrayList<>();
+        addLevel3Enemies(sliders, accelerated, walls, forbidden);
+
+        return new LevelPvP(3, board,
+            new ArrayList<>(), new ArrayList<>(),
+            coins, new ArrayList<>(), new ArrayList<>(),
+            sliders, accelerated, bombs, greenCoin
+        );
+    }
+
+    // =============================================
+    // NIVEL 4 - MUY DIFICIL (los tres modos)
+    // =============================================
+
+    /** Helper que crea los 8 AcceleratedEnemy del nivel 4 en zonas abiertas. */
+    private static List<AcceleratedEnemy> buildLevel4Enemies(List<Rectangle> walls,
+                                                              List<Rectangle> forbidden) {
+        // Posiciones y direcciones elegidas en zonas abiertas del mapa (fuera de paredes)
+        int[][] pos = {
+            {100, 160}, {100, 300},   // corredor izquierdo
+            {620, 160}, {620, 300},   // corredor derecho
+            {280, 50},  {450, 50},    // franja superior
+            {280, 420}, {450, 420}    // franja inferior
+        };
+        int[] dx = { 6, 6, -6, -6,  6, -6,  6, -6 };
+        int[] dy = { 0, 0,  0,  0,  0,  0,  0,  0 };
+        List<AcceleratedEnemy> list = new ArrayList<>();
+        for (int i = 0; i < pos.length; i++) {
+            AcceleratedEnemy a = new AcceleratedEnemy(pos[i][0], pos[i][1], dx[i], dy[i], BW, BH);
+            a.setWalls(walls);
+            for (Rectangle f : forbidden) a.addForbiddenZone(f);
+            list.add(a);
+        }
+        return list;
+    }
+
+    public static Level buildSingleLevel4(Player player) {
+        int zoneW = 70, zoneH = 100;
+        int zoneY = BH / 2 - zoneH / 2;
+
+        StartZone start = new StartZone(WT, zoneY, zoneW, zoneH);
+        EndZone   end   = new EndZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+
+        List<Rectangle> walls = buildLevel4Walls();
+        Board board = new Board(start, end, walls);
+        player.setWalls(walls);
+        player.setStartPosition(
+            start.getX() + start.getWidth()  / 2 - player.getSize() / 2,
+            start.getY() + start.getHeight() / 2 - player.getSize() / 2
+        );
+        player.respawn();
+
+        List<Coin> coins = List.of(
+            new Coin(110, 150), new Coin(110, 310),
+            new Coin(650, 150), new Coin(650, 310),
+            new Coin(290, 40),  new Coin(460, 40),
+            new Coin(290, 430), new Coin(460, 430),
+            new Coin(290, 170), new Coin(460, 170)
+        );
+        SkinCoin skinCoin   = new SkinCoin(370, 240);
+        GreenCoin greenCoin = new GreenCoin(410, 240);
+
+        List<Bomb> bombs = List.of(
+            new Bomb(240, 170), new Bomb(520, 170),
+            new Bomb(240, 290), new Bomb(520, 290)
+        );
+        List<LifeSource> lifeSources = List.of(
+            new LifeSource(150, 230),
+            new LifeSource(600, 230)
+        );
+
+        List<Rectangle> forbidden = List.of(rect(start), rect(end));
+        List<AcceleratedEnemy> accelerated = buildLevel4Enemies(walls, forbidden);
+
+        return new Level(4, board,
+            new ArrayList<>(), new ArrayList<>(),
+            coins, List.of(skinCoin), new ArrayList<>(),
+            new ArrayList<>(), accelerated, bombs, greenCoin, lifeSources
+        );
+    }
+
+    public static LevelPvP buildPvPLevel4(Player p1, Player p2) {
+        int zoneW = 70, zoneH = 100;
+        int zoneY = BH / 2 - zoneH / 2;
+
+        StartZone start1 = new StartZone(WT, zoneY, zoneW, zoneH);
+        EndZone   end1   = new EndZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        StartZone start2 = new StartZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        EndZone   end2   = new EndZone(WT, zoneY, zoneW, zoneH);
+
+        List<Rectangle> walls = buildLevel4Walls();
+        BoardPvP board = new BoardPvP(start1, start2, end1, end2, walls);
+        setupPlayerPvP(p1, walls, start1);
+        setupPlayerPvP(p2, walls, start2);
+
+        List<Coin> coins = List.of(
+            new Coin(110, 150), new Coin(110, 310),
+            new Coin(650, 150), new Coin(650, 310),
+            new Coin(290, 40),  new Coin(460, 40),
+            new Coin(290, 430), new Coin(460, 430),
+            new Coin(290, 170), new Coin(460, 170)
+        );
+        SkinCoin skinCoin   = new SkinCoin(370, 240);
+        GreenCoin greenCoin = new GreenCoin(410, 240);
+
+        List<Bomb> bombs = List.of(
+            new Bomb(240, 170), new Bomb(520, 170),
+            new Bomb(240, 290), new Bomb(520, 290)
+        );
+        List<LifeSource> lifeSources = List.of(
+            new LifeSource(150, 230),
+            new LifeSource(600, 230)
+        );
+
+        List<Rectangle> forbidden = List.of(rect(start1), rect(start2));
+        List<AcceleratedEnemy> accelerated = buildLevel4Enemies(walls, forbidden);
+
+        return new LevelPvP(4, board,
+            new ArrayList<>(), new ArrayList<>(),
+            coins, List.of(skinCoin), new ArrayList<>(),
+            new ArrayList<>(), accelerated, bombs, greenCoin, lifeSources
+        );
+    }
+
+    public static LevelPvP buildPvMLevel4(Player player, MachinePlayer machine) {
+        int zoneW = 70, zoneH = 100;
+        int zoneY = BH / 2 - zoneH / 2;
+
+        StartZone start1 = new StartZone(WT, zoneY, zoneW, zoneH);
+        EndZone   end1   = new EndZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        StartZone start2 = new StartZone(BW - WT - zoneW, zoneY, zoneW, zoneH);
+        EndZone   end2   = new EndZone(WT, zoneY, zoneW, zoneH);
+
+        List<Rectangle> walls = buildLevel4Walls();
+        BoardPvP board = new BoardPvP(start1, start2, end1, end2, walls);
+        setupPlayerPvP(player,  walls, start1);
+        setupPlayerPvP(machine, walls, start2);
+
+        List<Coin> coins = List.of(
+            new Coin(110, 150), new Coin(110, 310),
+            new Coin(650, 150), new Coin(650, 310),
+            new Coin(290, 40),  new Coin(460, 40),
+            new Coin(290, 430), new Coin(460, 430),
+            new Coin(290, 170), new Coin(460, 170)
+        );
+        SkinCoin skinCoin   = new SkinCoin(370, 240);
+        GreenCoin greenCoin = new GreenCoin(410, 240);
+
+        List<Bomb> bombs = List.of(
+            new Bomb(240, 170), new Bomb(520, 170),
+            new Bomb(240, 290), new Bomb(520, 290)
+        );
+        List<LifeSource> lifeSources = List.of(
+            new LifeSource(150, 230),
+            new LifeSource(600, 230)
+        );
+
+        List<Rectangle> forbidden = List.of(rect(start1), rect(start2));
+        List<AcceleratedEnemy> accelerated = buildLevel4Enemies(walls, forbidden);
+
+        return new LevelPvP(4, board,
+            new ArrayList<>(), new ArrayList<>(),
+            coins, List.of(skinCoin), new ArrayList<>(),
+            new ArrayList<>(), accelerated, bombs, greenCoin, lifeSources
         );
     }
 
