@@ -10,6 +10,12 @@ import java.util.List;
  * Enemigo Acelerado (Tipo A).
  * Se desplaza en línea recta (horizontal o vertical) al doble de velocidad
  * de los demás enemigos. Rebota en paredes. Dificultad: Alta.
+ *
+ * <p>Velocidad: 6 px/tick (el doble que un Enemy normal).</p>
+ * <p>Tamaño: 16x16 px.</p>
+ * <p>Color: azul con borde gris oscuro.</p>
+ *
+ * <p>Aparece en los niveles 3 y 4 de todos los modos de juego.</p>
  */
 public class AcceleratedEnemy implements IMovable, ICollidable, IRenderable {
 
