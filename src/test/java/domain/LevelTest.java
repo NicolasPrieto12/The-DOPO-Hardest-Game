@@ -129,7 +129,9 @@ class LevelTest {
         EndZone   end   = new EndZone(700, 200, 80, 100);
         Board board = new Board(start, end, List.of());
         CheckpointZone cp = new CheckpointZone(40, 230, 80, 60);
-        Level levelWithCp = new Level(1, board, List.of(), List.of(coin),
+        Level levelWithCp = new Level(1, board,
+            new ArrayList<>(), new ArrayList<>(),
+            List.of(coin), new ArrayList<>(),
             List.of(cp));
         Player p = new Player(50, 240);
         levelWithCp.updateCheckpoints(p);
