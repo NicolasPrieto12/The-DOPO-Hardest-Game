@@ -104,7 +104,7 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 - Al morir sin checkpoint: el jugador vuelve al inicio y las monedas se reinician
 - Al morir con checkpoint activo: el jugador reaparece en el checkpoint conservando monedas
 - En PvP/PvM: la muerte de un jugador **no afecta** las monedas del otro
-- El juego se puede **pausar** (tecla P) y **reiniciar** en cualquier momento
+- El juego se puede **reiniciar** en cualquier momento
 - Se puede **guardar y cargar** la partida (modos Single y PvP)
 
 ---
@@ -120,11 +120,11 @@ El proyecto cuenta con **8 clases de prueba** con más de **40 casos de prueba**
 - Sistema de checkpoints
 - Recolección de monedas
 - Condición de victoria
-- Pausa y reinicio
+- Reinicio
 - Progresión de niveles
 - Tiempo agotado (TIMEOUT)
 - Independencia de monedas en PvP/PvM
-- Comportamiento de la IA (RANDOM y EXPERT)
+- Comportamiento de la máquina (RANDOM y EXPERT)
 - Patrón Singleton
 
 ### Resultado de Coverage (IntelliJ)
@@ -215,19 +215,32 @@ Ambos otorgan 90 ticks de invencibilidad tras absorber el golpe.
 ### Requisitos
 - Java 17 o superior
 - Maven 3.8+
+- Git
 
-### Compilar y ejecutar
+### 1. Clonar el repositorio
 ```bash
-mvn compile
-mvn exec:java -Dexec.mainClass="gui.GameGUI"
+git clone <URL_DEL_REPOSITORIO>
+cd ProyectoFinal
 ```
 
-### Ejecutar pruebas
+### 2. Compilar y ejecutar directamente con Maven
+```bash
+mvn compile
+mvn exec:java
+```
+
+### 3. Generar JAR ejecutable y correrlo
+```bash
+mvn package -DskipTests
+java -jar target/dopo-hardest-game.jar
+```
+
+### 4. Ejecutar pruebas
 ```bash
 mvn test
 ```
 
-### Ejecutar con cobertura (IntelliJ)
+### 5. Ejecutar con cobertura (IntelliJ)
 1. Click derecho sobre `src/test/java/domain/`
 2. Seleccionar **"Run 'All Tests' with Coverage"**
 3. Ver el reporte en el panel **Coverage**
@@ -239,7 +252,6 @@ mvn test
 | Acción | Un Jugador / J1 PvP | J2 PvP |
 |--------|---------------------|--------|
 | Mover | ↑ ↓ ← → | W A S D |
-| Pausar | P | P |
 | Reiniciar | R (en menú) | — |
 
 ---
