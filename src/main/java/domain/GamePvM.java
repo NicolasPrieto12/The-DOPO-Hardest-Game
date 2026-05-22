@@ -7,6 +7,14 @@ import java.util.List;
  * El jugador humano usa flechas, inicia en la izquierda y gana llegando a la derecha.
  * La máquina inicia en la derecha y gana llegando a la izquierda.
  * El primero en llegar a su zona contraria gana el nivel.
+ *
+ * <p>La máquina soporta dos perfiles de comportamiento:</p>
+ * <ul>
+ *   <li>{@link MachineProfile#RANDOM}: movimiento aleatorio con tendencia al objetivo</li>
+ *   <li>{@link MachineProfile#EXPERT}: siempre elige la dirección libre más cercana al objetivo</li>
+ * </ul>
+ *
+ * <p>Las monedas son compartidas pero la muerte de un jugador NO reinicia las monedas del otro.</p>
  */
 public class GamePvM {
 
