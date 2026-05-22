@@ -8,6 +8,15 @@ import java.util.Random;
  * Jugador controlado por la máquina en el modo Player vs Machine.
  * IA mejorada: detecta paredes bloqueantes y elige direcciones alternativas
  * para evitar quedarse atascada. Soporta perfil RANDOM y EXPERT.
+ *
+ * <p>Hereda de {@link Player} para reutilizar el sistema de movimiento,
+ * colisiones, checkpoints y tipos de jugador.</p>
+ *
+ * <p>Algoritmo de detección de atasco: si la máquina no se mueve durante
+ * 8 ticks consecutivos, recalcula la dirección automáticamente.</p>
+ *
+ * <p>Estrategia de objetivo: primero busca la moneda más cercana (distancia Manhattan).
+ * Si no hay monedas, va directamente a su EndZone.</p>
  */
 public class MachinePlayer extends Player {
 
