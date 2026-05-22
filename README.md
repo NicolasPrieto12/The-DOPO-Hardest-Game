@@ -210,8 +210,13 @@ El código fue analizado con las herramientas integradas de IntelliJ IDEA:
 
 - Sin variables no utilizadas
 - Sin imports innecesarios
-- Javadoc completo en todas las clases públicas
+- Javadoc completo en todas las clases pública
 - Separación estricta entre capa de dominio y GUI (dominio sin imports de `java.awt` excepto `Rectangle` y `Graphics`)
+- Uso de `final` en campos inmutables
+- Uso de `List.of()` para listas inmutables donde aplica
+- Nombres de variables y métodos descriptivos en español
+- Constantes nombradas con `UPPER_SNAKE_CASE`
+- Clases de prueba con nombres `should/shouldNot` para describir comportamiento esperado
 
 ### Análisis Dinámico
 
