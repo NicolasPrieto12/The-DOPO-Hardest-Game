@@ -8,13 +8,13 @@
 
 ---
 
-## 📋 Descripción
+## Descripción
 
 The DOPO Hardest Game es un juego de habilidad y reflejos en 2D donde el jugador controla un cuadrado rojo y debe recoger todas las monedas del nivel para luego llegar a la zona final, evitando a los enemigos. El juego cuenta con 3 modos de juego, 4 niveles de dificultad progresiva y múltiples elementos especiales.
 
 ---
 
-## 🕹️ Modos de Juego
+## Modos de Juego
 
 El juego ofrece **3 modos**:
 
@@ -26,7 +26,7 @@ El juego ofrece **3 modos**:
 
 ---
 
-## 🗺️ Niveles
+## Niveles
 
 El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modos:
 
@@ -55,7 +55,7 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 ---
 
-## 💰 Tipos de Monedas
+## Tipos de Monedas
 
 | Moneda | Color | Efecto |
 |--------|-------|--------|
@@ -65,7 +65,7 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 ---
 
-## 👾 Tipos de Enemigos
+## Tipos de Enemigos
 
 | Enemigo | Color | Comportamiento | Dificultad |
 |---------|-------|----------------|------------|
@@ -76,7 +76,7 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 ---
 
-## ✨ Elementos Especiales
+## Elementos Especiales
 
 | Elemento | Descripción |
 |----------|-------------|
@@ -88,7 +88,7 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 ---
 
-## 🧩 Tipos de Jugador
+## Tipos de Jugador
 
 | Tipo | Color | Velocidad | Tamaño | Descripción |
 |------|-------|-----------|--------|-------------|
@@ -98,7 +98,7 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 ---
 
-## ⏱️ Reglas Generales
+## Reglas Generales
 
 - Cada nivel tiene un límite de **3 minutos** (180 segundos). Si se agota → `TIMEOUT`
 - Al morir sin checkpoint: el jugador vuelve al inicio y las monedas se reinician
@@ -109,7 +109,7 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 ---
 
-## 🧪 Pruebas
+## Pruebas
 
 ### Cobertura de Pruebas
 
@@ -186,7 +186,7 @@ Pruebas de comportamiento en tiempo de ejecución verificadas:
 
 ---
 
-## 📝 Notas de Diseño
+## Notas de Diseño
 
 ### Independencia de monedas en PvP/PvM
 En los modos PvP y PvM, las monedas son **compartidas** en el tablero pero la muerte de un jugador **no reinicia** las monedas del otro. Esto se logra mediante `LevelPvP.resetPlayer()` que solo reposiciona al jugador sin tocar las monedas.
@@ -210,7 +210,7 @@ Ambos otorgan 90 ticks de invencibilidad tras absorber el golpe.
 
 ---
 
-## ▶️ Cómo Ejecutar
+## Cómo Ejecutar
 
 ### Requisitos
 - Java 17 o superior
@@ -234,7 +234,7 @@ mvn test
 
 ---
 
-## 🎮 Controles
+## Controles
 
 | Acción | Un Jugador / J1 PvP | J2 PvP |
 |--------|---------------------|--------|
@@ -244,7 +244,7 @@ mvn test
 
 ---
 
-## 📦 Dependencias
+## Dependencias
 
 ```xml
 <dependency>
