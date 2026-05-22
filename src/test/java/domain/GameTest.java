@@ -156,4 +156,83 @@ class GameTest {
         Game mismaInstancia = Game.getInstance();
         assertSame(game, mismaInstancia);
     }
+
+    /** nextLevel() con dos niveles deberia avanzar al nivel 2 sin terminar el juego. */
+    @Test
+    void shouldAdvanceToNextLevelWhenMoreLevelsExist() {
+        Game.resetInstance();
+        StartZone s1 = new StartZone(20, 200, 80, 100);
+        EndZone   e1 = new EndZone(700, 200, 80, 100);
+        StartZone s2 = new StartZone(20, 200, 80, 100);
+        EndZone   e2 = new EndZone(700, 200, 80, 100);
+        Board b1 = new Board(s1, e1, List.of());
+        Board b2 = new Board(s2, e2, List.of());
+        Player p = new Player(50, 240);
+        Coin c1 = new Coin(400, 240);
+        Coin c2 = new Coin(400, 240);
+        Level lv1 = new Level(1, b1, List.of(), List.of(c1));
+        Level lv2 = new Level(2, b2, List.of(), List.of(c2));
+        Game g = Game.getInstance(p, List.of(lv1, lv2));
+        g.nextLevel();
+        assertEquals(1, g.getCurrentLevelIndex());
+        assertEquals(GameState.PLAYING, g.getState());
+    }
+
+    /** update() deberia detectar colision con enemigo y llamar checkDeath(). */
+    @Test
+    void shouldUpdateDetectEnemyCollisionAndCallCheckDeath() {
+        game.start();
+        player.setPosition(enemy.getBounds().x, enemy.getBounds().y);
+        game.update();
+        assertEquals(1, game.getDeaths());
+    }
+
+    /** update() deberia recoger moneda cuando el jugador colisiona con ella. */
+    @Test
+    void shouldUpdateCollectCoinOnPlayerCollision() {
+        game.start();
+        player.setPosition(coin.getBounds().x, coin.getBounds().y);
+        game.update();
+        assertTrue(coin.isCollected());
+    }
+
+    /** update() deberia pasar a WIN cuando el jugador completa el nivel. */
+    @Test
+    void shouldUpdateSetWinWhenLevelCompleted() {
+        game.start();
+        coin.collect();
+        player.setPosition(720, 240);
+        game.update();
+        assertEquals(GameState.WIN, game.getState());
+    }
+
+    /** checkDeath() con escudo activo no deberia incrementar muertes. */
+    @Test
+    void shouldCheckDeathNotIncrementDeathsWhenShielded() {
+        player.applyType(PlayerType.GREEN);
+        game.checkDeath();
+        assertEquals(0, game.getDeaths());
+    }
+
+    /** update() no deberia actualizar cuando el estado es WIN. */
+    @Test
+    void shouldUpdateNotRunWhenStateIsWin() {
+        game.nextLevel(); // WIN porque solo hay un nivel
+        int deathsBefore = game.getDeaths();
+        game.update();
+        assertEquals(deathsBefore, game.getDeaths());
+    }
+
+    /** setters de carga deberian actualizar los valores correctamente. */
+    @Test
+    void shouldSettersUpdateValuesCorrectly() {
+        game.setState(GameState.PAUSED);
+        game.setDeaths(5);
+        game.setSecondsLeft(90);
+        game.setCurrentLevelIndex(0);
+        assertEquals(GameState.PAUSED, game.getState());
+        assertEquals(5, game.getDeaths());
+        assertEquals(90, game.getSecondsLeft());
+        assertEquals(0, game.getCurrentLevelIndex());
+    }
 }

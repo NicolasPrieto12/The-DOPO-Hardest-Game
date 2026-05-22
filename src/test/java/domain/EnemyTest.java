@@ -106,4 +106,42 @@ class EnemyTest {
         assertEquals(300, enemy.getBounds().x);
         assertEquals(250, enemy.getBounds().y);
     }
+
+    /** El enemigo deberia rebotar al chocar con una pared. */
+    @Test
+    void shouldBounceWhenHittingWall() {
+        enemy.setWalls(java.util.List.of(new java.awt.Rectangle(303, 240, 20, 30)));
+        enemy.move();
+        int x1 = enemy.getBounds().x;
+        enemy.move();
+        assertTrue(enemy.getBounds().x < x1);
+    }
+
+    /** El enemigo vertical deberia moverse hacia abajo. */
+    @Test
+    void shouldMoveDownWhenDyIsPositive() {
+        Enemy e = new Enemy(300, 100, 0, 3, BW, BH);
+        e.move();
+        assertEquals(103, e.getBounds().y);
+    }
+
+    /** El enemigo deberia rebotar al llegar al borde superior. */
+    @Test
+    void shouldBounceWhenReachingTopBorder() {
+        Enemy e = new Enemy(300, 2, 0, -3, BW, BH);
+        e.move();
+        int y1 = e.getBounds().y;
+        e.move();
+        assertTrue(e.getBounds().y > y1);
+    }
+
+    /** El enemigo deberia rebotar al llegar al borde inferior. */
+    @Test
+    void shouldBounceWhenReachingBottomBorder() {
+        Enemy e = new Enemy(300, BH - 20, 0, 3, BW, BH);
+        e.move();
+        int y1 = e.getBounds().y;
+        e.move();
+        assertTrue(e.getBounds().y < y1);
+    }
 }

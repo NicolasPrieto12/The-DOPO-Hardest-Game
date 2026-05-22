@@ -351,4 +351,119 @@ class MultiplayerTest {
         level.update();
         assertNotEquals(xBefore, enemy.getBounds().x);
     }
+
+    /** LevelPvP update deberia mover PatrolEnemy. */
+    @Test
+    void shouldLevelPvPUpdateMovePatrolEnemy() {
+        PatrolEnemy patrol = new PatrolEnemy(300, 240, 3, new int[][]{{400, 240}, {300, 240}});
+        LevelPvP level = new LevelPvP(1, board, new ArrayList<>(), List.of(patrol),
+            new ArrayList<>(), new ArrayList<>());
+        int xBefore = patrol.getBounds().x;
+        level.update();
+        assertNotEquals(xBefore, patrol.getBounds().x);
+    }
+
+    /** GamePvP deberia respetar checkpoint al morir el jugador 1. */
+    @Test
+    void shouldPvPRespawnPlayer1AtCheckpointWhenDies() {
+        Player p1 = new Player(50, 240);
+        Player p2 = new Player(730, 240);
+        p1.saveCheckpoint(390, 230);
+        Enemy enemy = new Enemy(50, 240, 0, 0, 800, 500);
+        LevelPvP level = new LevelPvP(1, board, List.of(enemy), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
+        GamePvP game = new GamePvP(p1, p2, List.of(level));
+        game.start();
+        game.update();
+        assertEquals(390, p1.getX());
+        assertEquals(230, p1.getY());
+    }
+
+    /** GamePvM deberia respetar checkpoint al morir el jugador. */
+    @Test
+    void shouldPvMRespawnPlayerAtCheckpointWhenDies() {
+        Player player = new Player(50, 240);
+        MachinePlayer machine = new MachinePlayer(730, 240, MachineProfile.RANDOM);
+        player.saveCheckpoint(390, 230);
+        Enemy enemy = new Enemy(50, 240, 0, 0, 800, 500);
+        LevelPvP level = new LevelPvP(1, board, List.of(enemy), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
+        GamePvM game = new GamePvM(player, machine, List.of(level));
+        game.start();
+        game.update();
+        assertEquals(390, player.getX());
+        assertEquals(230, player.getY());
+    }
+
+    /** GamePvP skipLevel deberia avanzar al siguiente nivel. */
+    @Test
+    void shouldPvPSkipLevelAdvanceToNextLevel() {
+        Player p1 = new Player(50, 240);
+        Player p2 = new Player(730, 240);
+        LevelPvP level1 = new LevelPvP(1, board, new ArrayList<>(), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
+        StartZone s1b = new StartZone(20, 200, 80, 100);
+        EndZone   e1b = new EndZone(700, 200, 80, 100);
+        StartZone s2b = new StartZone(700, 200, 80, 100);
+        EndZone   e2b = new EndZone(20, 200, 80, 100);
+        BoardPvP board2 = new BoardPvP(s1b, s2b, e1b, e2b, List.of());
+        LevelPvP level2 = new LevelPvP(2, board2, new ArrayList<>(), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
+        GamePvP game = new GamePvP(p1, p2, List.of(level1, level2));
+        game.start();
+        game.skipLevel();
+        assertEquals(1, game.getCurrentLevelIndex());
+    }
+
+    /** GamePvM skipLevel deberia avanzar al siguiente nivel. */
+    @Test
+    void shouldPvMSkipLevelAdvanceToNextLevel() {
+        Player player = new Player(50, 240);
+        MachinePlayer machine = new MachinePlayer(730, 240, MachineProfile.RANDOM);
+        LevelPvP level1 = new LevelPvP(1, board, new ArrayList<>(), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
+        StartZone s1b = new StartZone(20, 200, 80, 100);
+        EndZone   e1b = new EndZone(700, 200, 80, 100);
+        StartZone s2b = new StartZone(700, 200, 80, 100);
+        EndZone   e2b = new EndZone(20, 200, 80, 100);
+        BoardPvP board2 = new BoardPvP(s1b, s2b, e1b, e2b, List.of());
+        LevelPvP level2 = new LevelPvP(2, board2, new ArrayList<>(), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
+        GamePvM game = new GamePvM(player, machine, List.of(level1, level2));
+        game.start();
+        game.skipLevel();
+        assertEquals(1, game.getCurrentLevelIndex());
+    }
+
+    /** GamePvP no deberia actualizar cuando esta en estado WIN. */
+    @Test
+    void shouldPvPNotUpdateWhenStateIsWin() {
+        Player p1 = new Player(50, 240);
+        Player p2 = new Player(730, 240);
+        Coin coin = new Coin(400, 240);
+        LevelPvP level = new LevelPvP(1, board, new ArrayList<>(), new ArrayList<>(),
+            List.of(coin), new ArrayList<>());
+        GamePvP game = new GamePvP(p1, p2, List.of(level));
+        game.start();
+        coin.collect();
+        p1.setPosition(720, 240);
+        game.update(); // WIN
+        int deaths = game.getDeaths1();
+        game.update(); // no deberia actualizar
+        assertEquals(deaths, game.getDeaths1());
+    }
+
+    /** GamePvM deberia matar a la maquina al colisionar con enemigo. */
+    @Test
+    void shouldPvMKillMachineWhenCollidesWithEnemy() {
+        Player player = new Player(50, 240);
+        MachinePlayer machine = new MachinePlayer(730, 240, MachineProfile.RANDOM);
+        Enemy enemy = new Enemy(730, 240, 0, 0, 800, 500);
+        LevelPvP level = new LevelPvP(1, board, List.of(enemy), new ArrayList<>(),
+            new ArrayList<>(), new ArrayList<>());
+        GamePvM game = new GamePvM(player, machine, List.of(level));
+        game.start();
+        game.update();
+        assertEquals(1, game.getDeathsMachine());
+    }
 }

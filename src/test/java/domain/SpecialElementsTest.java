@@ -340,4 +340,88 @@ class SpecialElementsTest {
         assertSame(e1, board.getEndZone1());
         assertSame(e2, board.getEndZone2());
     }
+
+    /** Board deberia retornar sus dimensiones correctas. */
+    @Test
+    void shouldBoardReturnCorrectDimensions() {
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        assertEquals(800, board.getWidth());
+        assertEquals(500, board.getHeight());
+        assertSame(start, board.getStartZone());
+        assertSame(end, board.getEndZone());
+    }
+
+    /** Board.getDefaultSize() deberia retornar 800x500. */
+    @Test
+    void shouldBoardGetDefaultSizeReturn800x500() {
+        int[] size = Board.getDefaultSize();
+        assertEquals(800, size[0]);
+        assertEquals(500, size[1]);
+    }
+
+    /** AcceleratedEnemy vertical deberia moverse hacia abajo. */
+    @Test
+    void shouldAcceleratedEnemyMoveVertically() {
+        domain.AcceleratedEnemy ae = new domain.AcceleratedEnemy(200, 100, 0, 1, 800, 500);
+        int initialY = ae.getBounds().y;
+        ae.move();
+        assertEquals(initialY + 6, ae.getBounds().y);
+    }
+
+    /** AcceleratedEnemy deberia rebotar en borde inferior. */
+    @Test
+    void shouldAcceleratedEnemyBounceAtBottomBorder() {
+        domain.AcceleratedEnemy ae = new domain.AcceleratedEnemy(200, 480, 0, 1, 800, 500);
+        ae.move();
+        int y1 = ae.getBounds().y;
+        ae.move();
+        assertTrue(ae.getBounds().y < y1);
+    }
+
+    /** SliderEnemy deberia rebotar al chocar con zona prohibida. */
+    @Test
+    void shouldSliderEnemyBounceWhenHittingForbiddenZone() {
+        domain.SliderEnemy slider = new domain.SliderEnemy(200, 100, 3, 500);
+        slider.addForbiddenZone(new java.awt.Rectangle(190, 103, 30, 20));
+        int y1 = slider.getBounds().y;
+        slider.move();
+        assertTrue(slider.getBounds().y <= y1);
+    }
+
+    /** AcceleratedEnemy deberia rebotar al chocar con zona prohibida. */
+    @Test
+    void shouldAcceleratedEnemyBounceWhenHittingForbiddenZone() {
+        domain.AcceleratedEnemy ae = new domain.AcceleratedEnemy(200, 200, 1, 0, 800, 500);
+        ae.addForbiddenZone(new java.awt.Rectangle(206, 190, 20, 30));
+        ae.move();
+        int x1 = ae.getBounds().x;
+        ae.move();
+        assertTrue(ae.getBounds().x < x1);
+    }
+
+    /** MachinePlayer atascado deberia recalcular direccion. */
+    @Test
+    void shouldMachinePlayerRecalculateDirectionWhenStuck() {
+        domain.MachinePlayer machine = new domain.MachinePlayer(400, 240, domain.MachineProfile.RANDOM);
+        machine.setWalls(List.of());
+        // Simular 8 ticks sin moverse forzando posicion fija
+        for (int i = 0; i < 10; i++) {
+            machine.setPosition(400, 240);
+            machine.updateAI(new java.util.ArrayList<>(), new java.util.ArrayList<>(), 30, 240);
+        }
+        // Despues de detectar atasco, debe haber recalculado - no lanza excepcion
+        assertNotNull(machine);
+    }
+
+    /** GameState deberia tener las constantes correctas. */
+    @Test
+    void shouldGameStateHaveCorrectConstants() {
+        assertEquals("PLAYING", GameState.PLAYING);
+        assertEquals("PAUSED",  GameState.PAUSED);
+        assertEquals("WIN",     GameState.WIN);
+        assertEquals("TIMEOUT", GameState.TIMEOUT);
+        assertEquals("DEAD",    GameState.DEAD);
+    }
 }

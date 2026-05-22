@@ -158,4 +158,77 @@ class PlayerTest {
         player.move();
         assertEquals(100, player.getY());
     }
+
+    /** El jugador no deberia atravesar una pared al moverse hacia abajo. */
+    @Test
+    void shouldNotMoveThroughWallBelow() {
+        java.util.List<java.awt.Rectangle> walls = java.util.List.of(
+            new java.awt.Rectangle(0, 110, 800, 20)
+        );
+        player.setWalls(walls);
+        player.setMovingDown(true);
+        player.move();
+        assertEquals(100, player.getY());
+    }
+
+    /** El jugador no deberia atravesar una pared al moverse hacia la izquierda. */
+    @Test
+    void shouldNotMoveThroughWallToTheLeft() {
+        java.util.List<java.awt.Rectangle> walls = java.util.List.of(
+            new java.awt.Rectangle(90, 0, 20, 800)
+        );
+        player.setWalls(walls);
+        player.setMovingLeft(true);
+        player.move();
+        assertEquals(100, player.getX());
+    }
+
+    /** El jugador no deberia atravesar una pared al moverse hacia la derecha. */
+    @Test
+    void shouldNotMoveThroughWallToTheRight() {
+        java.util.List<java.awt.Rectangle> walls = java.util.List.of(
+            new java.awt.Rectangle(110, 0, 20, 800)
+        );
+        player.setWalls(walls);
+        player.setMovingRight(true);
+        player.move();
+        assertEquals(100, player.getX());
+    }
+
+    /** respawnAtCheckpoint() deberia reposicionar al jugador en el checkpoint guardado. */
+    @Test
+    void shouldRespawnAtSavedCheckpoint() {
+        player.saveCheckpoint(300, 200);
+        player.setPosition(500, 500);
+        player.respawnAtCheckpoint();
+        assertEquals(300, player.getX());
+        assertEquals(200, player.getY());
+    }
+
+    /** respawnAtCheckpoint() sin checkpoint deberia volver al inicio. */
+    @Test
+    void shouldRespawnAtStartWhenNoCheckpointSaved() {
+        player.setPosition(500, 500);
+        player.respawnAtCheckpoint();
+        assertEquals(100, player.getX());
+        assertEquals(100, player.getY());
+    }
+
+    /** applyType() deberia actualizar velocidad y tamano al tipo BLUE. */
+    @Test
+    void shouldApplyTypeBlueUpdateSpeedAndSize() {
+        player.applyType(PlayerType.BLUE);
+        assertEquals(PlayerType.BLUE, player.getType());
+        assertEquals(PlayerType.BLUE.speed, player.getSpeed());
+        assertEquals(PlayerType.BLUE.size, player.getSize());
+    }
+
+    /** setStartPosition() deberia actualizar la posicion de inicio. */
+    @Test
+    void shouldSetStartPositionUpdateRespawnPoint() {
+        player.setStartPosition(200, 300);
+        player.respawn();
+        assertEquals(200, player.getX());
+        assertEquals(300, player.getY());
+    }
 }
