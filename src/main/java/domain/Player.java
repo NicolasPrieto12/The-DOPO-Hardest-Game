@@ -50,6 +50,15 @@ public class Player implements IMovable, ICollidable, IRenderable {
     /** Posición Y del último checkpoint alcanzado. -1 si no hay checkpoint. */
     private int checkpointY = -1;
 
+    /** Indica si el jugador tiene el escudo de Clyde activo (primer golpe absorbido). */
+    private boolean shielded = false;
+
+    /** Indica si el escudo activo proviene de una LifeSource (no baja velocidad al absorber). */
+    private boolean lifeShield = false;
+
+    /** Ticks de invencibilidad restantes tras absorber un golpe (evita doble hit en el mismo frame). */
+    private int invincibleTicks = 0;
+
     /**
      * Crea un jugador del tipo indicado en la posición de inicio dada.
      *
@@ -135,9 +144,12 @@ public class Player implements IMovable, ICollidable, IRenderable {
      * @param newType El nuevo tipo del jugador.
      */
     public void applyType(PlayerType newType) {
-        this.type  = newType;
-        this.size  = newType.size;
-        this.speed = newType.speed;
+        this.type            = newType;
+        this.size            = newType.size;
+        this.speed           = newType.speed;
+        this.shielded        = (newType == PlayerType.GREEN);
+        this.lifeShield      = false;
+        this.invincibleTicks = 0;
     }
 
     /**
@@ -218,6 +230,49 @@ public class Player implements IMovable, ICollidable, IRenderable {
         checkpointX = -1;
         checkpointY = -1;
     }
+
+    /**
+     * Intenta absorber un golpe con el escudo de Clyde.
+     * Si el escudo está activo, lo consume, reduce la velocidad a 1 y activa invencibilidad.
+     * Si está en periodo de invencibilidad, ignora el golpe.
+     * Si no hay escudo ni invencibilidad, retorna false (debe morir normalmente).
+     */
+    public boolean absorbHit() {
+        if (invincibleTicks > 0) return true;
+        if (shielded) {
+            shielded        = false;
+            if (!lifeShield) speed = 1;  // Clyde baja velocidad, LifeSource no
+            lifeShield      = false;
+            invincibleTicks = 90;
+            return true;
+        }
+        return false;
+    }
+
+    /** Descuenta un tick de invencibilidad. Llamar una vez por tick en el game loop. */
+    public void tickInvincibility() {
+        if (invincibleTicks > 0) invincibleTicks--;
+    }
+
+    /**
+     * Activa el escudo de vida (otorgado por una LifeSource).
+     * No cambia el tipo ni la velocidad, solo activa el escudo.
+     */
+    public void activateLifeShield() {
+        shielded   = true;
+        lifeShield = true;
+    }
+
+    /** Otorga invencibilidad temporal al respawnear (evita muerte inmediata al reaparecer). */
+    public void grantRespawnInvincibility() {
+        invincibleTicks = 60;
+    }
+
+    /** @return true si el escudo está activo. */
+    public boolean isShielded() { return shielded; }
+
+    /** @return true si el escudo activo es de LifeSource. */
+    public boolean isLifeShield() { return lifeShield; }
 
     /** {@inheritDoc} */
     @Override

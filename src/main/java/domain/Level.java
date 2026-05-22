@@ -33,6 +33,21 @@ public class Level {
     /** Lista de zonas de checkpoint del nivel. */
     private final List<CheckpointZone> checkpoints;
 
+    /** Lista de enemigos deslizadores verticales. */
+    private final List<SliderEnemy> sliderEnemies;
+
+    /** Lista de enemigos acelerados. */
+    private final List<AcceleratedEnemy> acceleratedEnemies;
+
+    /** Lista de bombas estáticas. */
+    private final List<Bomb> bombs;
+
+    /** Moneda verde (Clyde). Puede ser null si el nivel no tiene. */
+    private final GreenCoin greenCoin;
+
+    /** Lista de fuentes de vida. */
+    private final List<LifeSource> lifeSources;
+
     /**
      * Crea un nivel completo con todos sus elementos.
      *
@@ -48,13 +63,41 @@ public class Level {
                  List<Enemy> enemies, List<PatrolEnemy> patrolEnemies,
                  List<Coin> coins, List<SkinCoin> skinCoins,
                  List<CheckpointZone> checkpoints) {
-        this.levelNumber   = levelNumber;
-        this.board         = board;
-        this.enemies       = enemies;
-        this.patrolEnemies = patrolEnemies;
-        this.coins         = coins;
-        this.skinCoins     = skinCoins;
-        this.checkpoints   = checkpoints;
+        this(levelNumber, board, enemies, patrolEnemies, coins, skinCoins, checkpoints,
+             new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), null);
+    }
+
+    /**
+     * Crea un nivel completo con todos sus elementos incluyendo los nuevos tipos.
+     */
+    public Level(int levelNumber, Board board,
+                 List<Enemy> enemies, List<PatrolEnemy> patrolEnemies,
+                 List<Coin> coins, List<SkinCoin> skinCoins,
+                 List<CheckpointZone> checkpoints,
+                 List<SliderEnemy> sliderEnemies, List<AcceleratedEnemy> acceleratedEnemies,
+                 List<Bomb> bombs, GreenCoin greenCoin) {
+        this(levelNumber, board, enemies, patrolEnemies, coins, skinCoins, checkpoints,
+             sliderEnemies, acceleratedEnemies, bombs, greenCoin, new ArrayList<>());
+    }
+
+    public Level(int levelNumber, Board board,
+                 List<Enemy> enemies, List<PatrolEnemy> patrolEnemies,
+                 List<Coin> coins, List<SkinCoin> skinCoins,
+                 List<CheckpointZone> checkpoints,
+                 List<SliderEnemy> sliderEnemies, List<AcceleratedEnemy> acceleratedEnemies,
+                 List<Bomb> bombs, GreenCoin greenCoin, List<LifeSource> lifeSources) {
+        this.levelNumber         = levelNumber;
+        this.board               = board;
+        this.enemies             = enemies;
+        this.patrolEnemies       = patrolEnemies;
+        this.coins               = coins;
+        this.skinCoins           = skinCoins;
+        this.checkpoints         = checkpoints;
+        this.sliderEnemies       = sliderEnemies;
+        this.acceleratedEnemies  = acceleratedEnemies;
+        this.bombs               = bombs;
+        this.greenCoin           = greenCoin;
+        this.lifeSources         = lifeSources;
     }
 
     /**
@@ -70,12 +113,12 @@ public class Level {
         this(levelNumber, board, enemies, new ArrayList<>(), coins, new ArrayList<>(), new ArrayList<>());
     }
 
-    /**
-     * Actualiza el estado de todos los enemigos y verifica checkpoints para cada jugador.
-     */
+    /** Actualiza todos los enemigos y verifica checkpoints para cada jugador. */
     public void update() {
-        for (Enemy e : enemies)             e.move();
-        for (PatrolEnemy e : patrolEnemies) e.move();
+        for (Enemy e : enemies)                    e.move();
+        for (PatrolEnemy e : patrolEnemies)        e.move();
+        for (SliderEnemy e : sliderEnemies)        e.move();
+        for (AcceleratedEnemy e : acceleratedEnemies) e.move();
     }
 
     /**
@@ -93,7 +136,7 @@ public class Level {
      * @return true si todas las monedas normales están recogidas.
      */
     public boolean isCompleted() {
-        return coins.stream().allMatch(Coin::isCollected);
+        return !coins.isEmpty() && coins.stream().allMatch(Coin::isCollected);
     }
 
     /**
@@ -110,7 +153,11 @@ public class Level {
             board.getStartZone().resetPlayer(player);
             coins.forEach(Coin::reset);
             skinCoins.forEach(SkinCoin::reset);
+            if (greenCoin != null) greenCoin.reset();
+            lifeSources.forEach(LifeSource::reset);
         }
+        player.applyType(PlayerType.RED);
+        player.grantRespawnInvincibility();
     }
 
     /**
@@ -124,6 +171,8 @@ public class Level {
         coins.forEach(Coin::reset);
         skinCoins.forEach(SkinCoin::reset);
         checkpoints.forEach(CheckpointZone::reset);
+        if (greenCoin != null) greenCoin.reset();
+        lifeSources.forEach(LifeSource::reset);
         player.resetCheckpoint();
         player.applyType(PlayerType.RED);
     }
@@ -136,10 +185,15 @@ public class Level {
     public void render(Graphics g) {
         board.render(g);
         for (CheckpointZone cp : checkpoints) cp.render(g);
+        for (Bomb b : bombs)                  b.render(g);
+        for (LifeSource ls : lifeSources)     ls.render(g);
+        if (greenCoin != null)                greenCoin.render(g);
         for (Coin c : coins)                  c.render(g);
         for (SkinCoin sc : skinCoins)         sc.render(g);
         for (Enemy e : enemies)               e.render(g);
         for (PatrolEnemy e : patrolEnemies)   e.render(g);
+        for (SliderEnemy e : sliderEnemies)   e.render(g);
+        for (AcceleratedEnemy e : acceleratedEnemies) e.render(g);
     }
 
     /** @return El tablero del nivel. */
@@ -159,6 +213,21 @@ public class Level {
 
     /** @return La lista de checkpoints. */
     public List<CheckpointZone> getCheckpoints()  { return checkpoints; }
+
+    /** @return La lista de enemigos deslizadores verticales. */
+    public List<SliderEnemy> getSliderEnemies()   { return sliderEnemies; }
+
+    /** @return La lista de enemigos acelerados. */
+    public List<AcceleratedEnemy> getAcceleratedEnemies() { return acceleratedEnemies; }
+
+    /** @return La lista de bombas. */
+    public List<Bomb> getBombs()                  { return bombs; }
+
+    /** @return La moneda verde, o null si no hay. */
+    public GreenCoin getGreenCoin()               { return greenCoin; }
+
+    /** @return La lista de fuentes de vida. */
+    public List<LifeSource> getLifeSources()      { return lifeSources; }
 
     /** @return El número identificador del nivel. */
     public int getLevelNumber()                   { return levelNumber; }
