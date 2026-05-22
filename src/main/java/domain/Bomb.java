@@ -7,6 +7,12 @@ import java.awt.Rectangle;
 /**
  * Bomba estática. Destruye a cualquier elemento (jugador o enemigo) que colisione con ella.
  * No se desactiva al explotar: sigue activa durante toda la partida.
+ *
+ * <p>Tamaño: 18x18 px.</p>
+ * <p>Apariencia: cuerpo negro con mecha marrón y chispa amarilla.</p>
+ * <p>Efecto: muerte instantánea al contacto. No puede ser absorbida por el escudo.</p>
+ *
+ * <p>Aparece en los niveles 3 y 4 de todos los modos de juego.</p>
  */
 public class Bomb implements ICollidable, IRenderable {
 
