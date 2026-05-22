@@ -6,6 +6,17 @@ import java.util.List;
  * Clase principal del juego modo un jugador.
  * Implementa el patrón Singleton.
  * Coordina estado, tiempo, colisiones, checkpoints y progresión de niveles.
+ *
+ * <p>Flujo principal:</p>
+ * <ol>
+ *   <li>Crear instancia con {@link #getInstance(Player, List)}</li>
+ *   <li>Llamar {@link #start()} para iniciar</li>
+ *   <li>Llamar {@link #update()} en cada tick del game loop</li>
+ *   <li>Consultar {@link #getState()} para saber si hay victoria, timeout o pausa</li>
+ * </ol>
+ *
+ * <p>Estados posibles: {@link GameState#PLAYING}, {@link GameState#PAUSED},
+ * {@link GameState#WIN}, {@link GameState#TIMEOUT}.</p>
  */
 public class Game {
 
