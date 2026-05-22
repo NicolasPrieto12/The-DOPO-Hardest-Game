@@ -110,11 +110,21 @@ class EnemyTest {
     /** El enemigo deberia rebotar al chocar con una pared. */
     @Test
     void shouldBounceWhenHittingWall() {
-        enemy.setWalls(java.util.List.of(new java.awt.Rectangle(303, 240, 20, 30)));
-        enemy.move();
-        int x1 = enemy.getBounds().x;
-        enemy.move();
-        assertTrue(enemy.getBounds().x < x1);
+        // Enemigo en (300,250) moviendose a la derecha (dx=3)
+        // Pared lejos de la posicion inicial para evitar solapamiento
+        enemy.setWalls(java.util.List.of(new java.awt.Rectangle(320, 240, 20, 30)));
+        // Despues de varios ticks llega a la pared y rebota
+        int prevX;
+        int bouncedX = -1;
+        for (int i = 0; i < 10; i++) {
+            prevX = enemy.getBounds().x;
+            enemy.move();
+            if (enemy.getBounds().x < prevX) {
+                bouncedX = enemy.getBounds().x;
+                break;
+            }
+        }
+        assertTrue(bouncedX >= 0);
     }
 
     /** El enemigo vertical deberia moverse hacia abajo. */

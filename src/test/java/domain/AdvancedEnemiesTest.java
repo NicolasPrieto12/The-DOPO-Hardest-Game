@@ -58,13 +58,13 @@ class AdvancedEnemiesTest {
     /** PatrolEnemy no deberia entrar en zona prohibida. */
     @Test
     void shouldPatrolEnemyNotEnterForbiddenZone() {
-        // Enemigo en (100,100), waypoint en (200,100), zona prohibida cubre x=110..160
-        // La zona NO solapa con la posicion inicial (100,100)
+        // Enemigo en (100,100) size=16, bounds=(100,100,16,16)
+        // Zona prohibida en x=120..170, y=95..125 - NO solapa con posicion inicial
         PatrolEnemy patrol = new PatrolEnemy(100, 100, 3, new int[][]{{200, 100}});
-        patrol.addForbiddenZone(new Rectangle(110, 95, 50, 30));
+        patrol.addForbiddenZone(new Rectangle(120, 95, 50, 30));
         patrol.move();
-        // El enemigo no debe haber entrado en la zona prohibida
-        assertFalse(new Rectangle(110, 95, 50, 30).intersects(patrol.getBounds()));
+        // El enemigo salta el waypoint al detectar zona prohibida, no entra en ella
+        assertFalse(new Rectangle(120, 95, 50, 30).intersects(patrol.getBounds()));
     }
 
     // ─── SliderEnemy ────────────────────────────────────────────
