@@ -242,7 +242,45 @@ Pruebas de comportamiento en tiempo de ejecución verificadas:
 
 ---
 
-## ▶️ Cómo Ejecutar
+## 📝 Notas de Diseño
+
+### Independencia de monedas en PvP/PvM
+En los modos PvP y PvM, las monedas son **compartidas** en el tablero pero la muerte de un jugador **no reinicia** las monedas del otro. Esto se logra mediante `LevelPvP.resetPlayer()` que solo reposiciona al jugador sin tocar las monedas.
+
+### Patrón Singleton en Game
+`Game` usa Singleton para garantizar que solo exista una instancia del juego en modo single player. `Game.resetInstance()` permite destruir la instancia en los tests para garantizar aislamiento entre pruebas.
+
+### IA de la Máquina
+La máquina tiene dos perfiles:
+- **RANDOM**: cambia de dirección cada 25 ticks, con 65% de probabilidad de ir hacia el objetivo
+- **EXPERT**: siempre elige la dirección libre más cercana al objetivo, evitando paredes
+
+Ambos perfiles detectan cuando están atascados (sin moverse por 8 ticks) y recalculan la dirección.
+
+### Sistema de Escudos
+Hay dos tipos de escudo:
+1. **Clyde (GreenCoin)**: al absorber un golpe, la velocidad baja a 1 px/tick
+2. **LifeSource**: al absorber un golpe, la velocidad NO cambia
+
+Ambos otorgan 90 ticks de invencibilidad tras absorber el golpe.
+
+---
+
+## ❓ Preguntas Frecuentes
+
+**¿Puedo jugar solo sin necesidad de un segundo jugador?**  
+Sí, el modo **Un Jugador** es completamente independiente.
+
+**¿Qué pasa si el tiempo se agota?**  
+El juego pasa al estado `TIMEOUT` y muestra la pantalla de tiempo agotado. Se puede reiniciar.
+
+**¿Las monedas se reinician al morir en PvP?**  
+No. En PvP y PvM, la muerte de un jugador solo lo reposiciona a él. Las monedas permanecen como están.
+
+**¿Puedo guardar la partida?**  
+Sí, en los modos **Un Jugador** y **PvP** hay botón de guardar/cargar. El modo PvM no soporta guardado.
+
+---
 
 ### Requisitos
 - Java 17 o superior
