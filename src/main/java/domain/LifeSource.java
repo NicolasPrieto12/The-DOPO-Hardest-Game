@@ -9,6 +9,12 @@ import java.awt.Rectangle;
  * el primer golpe de enemigo no lo mata, solo reinicia posición sin reiniciar monedas.
  * La fuente desaparece una vez usada su carga.
  * Se dibuja como un corazón pequeño rojo.
+ *
+ * <p>Tamaño: 18x18 px.</p>
+ * <p>Efecto: activa {@link Player#activateLifeShield()} en el jugador.</p>
+ * <p>Diferencia con GreenCoin: el escudo de LifeSource NO reduce la velocidad al absorber.</p>
+ *
+ * <p>Aparece en el nivel 4 de todos los modos de juego (2 instancias).</p>
  */
 public class LifeSource implements ICollidable, IRenderable {
 
