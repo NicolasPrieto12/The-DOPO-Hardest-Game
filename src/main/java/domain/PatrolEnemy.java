@@ -9,6 +9,13 @@ import java.awt.Rectangle;
  * Se mueve entre una serie de puntos de control (waypoints) en orden,
  * avanzando hacia el siguiente punto cuando llega al actual.
  * Implementa {@link IMovable}, {@link ICollidable} e {@link IRenderable}.
+ *
+ * <p>Velocidad: configurable (normalmente 2 px/tick).</p>
+ * <p>Tamaño: 16x16 px.</p>
+ * <p>Color: azul oscuro con borde gris oscuro.</p>
+ *
+ * <p>Aparece en el nivel 2 de todos los modos de juego (3 instancias).</p>
+ * <p>Si el siguiente paso entra en una zona prohibida, salta al siguiente waypoint.</p>
  */
 public class PatrolEnemy implements IMovable, ICollidable, IRenderable {
 
