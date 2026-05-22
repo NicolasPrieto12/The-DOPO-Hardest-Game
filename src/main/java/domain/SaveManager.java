@@ -8,6 +8,24 @@ import java.util.List;
  * Gestiona el guardado y carga de partidas en archivos de texto.
  * Soporta tanto el modo un jugador como el modo PvP.
  * El formato del archivo es clave=valor, una por línea.
+ *
+ * <p>Formato del archivo de guardado (modo single):</p>
+ * <pre>
+ *   mode=single
+ *   level=0
+ *   deaths=3
+ *   secondsLeft=142
+ *   state=PLAYING
+ *   p1x=50
+ *   p1y=240
+ *   p1type=RED
+ *   p1checkpointX=-1
+ *   p1checkpointY=-1
+ *   coins=1,0,1,
+ * </pre>
+ *
+ * <p>Todos los errores de I/O se envuelven en {@link GameException} y se registran
+ * en el log mediante {@link GameLogger}.</p>
  */
 public class SaveManager {
 
