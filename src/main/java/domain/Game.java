@@ -84,6 +84,7 @@ public class Game {
         }
 
         player.move();
+        player.tickInvincibility();
         Level level = getCurrentLevel();
         level.update();
         level.updateCheckpoints(player);
@@ -96,11 +97,31 @@ public class Game {
             if (sc.collidesWith(player)) sc.collect(player);
         }
 
+        if (level.getGreenCoin() != null && level.getGreenCoin().collidesWith(player)) {
+            level.getGreenCoin().collect(player);
+        }
+
+        for (LifeSource ls : level.getLifeSources()) {
+            if (ls.collidesWith(player)) ls.collect(player);
+        }
+
+        for (Bomb bomb : level.getBombs()) {
+            if (bomb.collidesWith(player)) { checkDeath(); return; }
+        }
+
         for (Enemy enemy : level.getEnemies()) {
             if (enemy.collidesWith(player)) { checkDeath(); return; }
         }
 
         for (PatrolEnemy enemy : level.getPatrolEnemies()) {
+            if (enemy.collidesWith(player)) { checkDeath(); return; }
+        }
+
+        for (SliderEnemy enemy : level.getSliderEnemies()) {
+            if (enemy.collidesWith(player)) { checkDeath(); return; }
+        }
+
+        for (AcceleratedEnemy enemy : level.getAcceleratedEnemies()) {
             if (enemy.collidesWith(player)) { checkDeath(); return; }
         }
 
@@ -123,6 +144,7 @@ public class Game {
      * @return true siempre.
      */
     protected boolean checkDeath() {
+        if (player.absorbHit()) return true;
         deaths++;
         getCurrentLevel().reset(player);
         return true;
@@ -143,14 +165,12 @@ public class Game {
         }
     }
 
-    /** Reinicia completamente la partida. */
+    /** Reinicia solo el nivel actual (posición, monedas, tipo). No cambia de nivel. */
     public void restart() {
-        deaths             = 0;
-        currentLevelIndex  = 0;
-        state              = GameState.PLAYING;
-        tickCount          = 0;
-        secondsLeft        = TIME_LIMIT;
-        player.setWalls(getCurrentLevel().getBoard().getWalls());
+        state       = GameState.PLAYING;
+        deaths      = 0;
+        tickCount   = 0;
+        secondsLeft = TIME_LIMIT;
         getCurrentLevel().fullReset(player);
     }
 
