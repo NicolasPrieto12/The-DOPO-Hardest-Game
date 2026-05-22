@@ -93,24 +93,34 @@ public class GamePvM {
 
         // Movimiento del jugador humano
         player.move();
+        player.tickInvincibility();
         level.updateCheckpoints(player);
         handleCoins(level, player);
         handleSkinCoins(level, player);
+        handleGreenCoin(level, player);
+        handleLifeSources(level, player);
         if (checkEnemyCollision(level, player)) {
-            deathsPlayer++;
-            level.resetPlayer(player, level.getBoard().getStartZone1());
+            if (!player.absorbHit()) {
+                deathsPlayer++;
+                level.resetPositionOnly(player, level.getBoard().getStartZone1());
+            }
         }
 
         // Movimiento de la máquina con IA
         int targetX = level.getBoard().getEndZone2().getX() + level.getBoard().getEndZone2().getWidth()  / 2;
         int targetY = level.getBoard().getEndZone2().getY() + level.getBoard().getEndZone2().getHeight() / 2;
         machine.updateAI(level.getCoins(), level.getSkinCoins(), targetX, targetY);
+        machine.tickInvincibility();
         level.updateCheckpoints(machine);
         handleCoins(level, machine);
         handleSkinCoins(level, machine);
+        handleGreenCoin(level, machine);
+        handleLifeSources(level, machine);
         if (checkEnemyCollision(level, machine)) {
-            deathsMachine++;
-            level.resetPlayer(machine, level.getBoard().getStartZone2());
+            if (!machine.absorbHit()) {
+                deathsMachine++;
+                level.resetPositionOnly(machine, level.getBoard().getStartZone2());
+            }
         }
 
         // Verificar victoria: el primero que llegue gana
@@ -133,9 +143,24 @@ public class GamePvM {
         for (SkinCoin sc : level.getSkinCoins()) if (sc.collidesWith(p)) sc.collect(p);
     }
 
+    private void handleGreenCoin(LevelPvP level, Player p) {
+        if (level.getGreenCoin() != null && level.getGreenCoin().collidesWith(p)) {
+            level.getGreenCoin().collect(p);
+        }
+    }
+
+    private void handleLifeSources(LevelPvP level, Player p) {
+        for (LifeSource ls : level.getLifeSources()) {
+            if (ls.collidesWith(p)) ls.collect(p);
+        }
+    }
+
     private boolean checkEnemyCollision(LevelPvP level, Player p) {
-        for (Enemy e : level.getEnemies())           if (e.collidesWith(p)) return true;
-        for (PatrolEnemy e : level.getPatrolEnemies()) if (e.collidesWith(p)) return true;
+        for (Bomb b : level.getBombs())                          if (b.collidesWith(p)) return true;
+        for (Enemy e : level.getEnemies())                       if (e.collidesWith(p)) return true;
+        for (PatrolEnemy e : level.getPatrolEnemies())           if (e.collidesWith(p)) return true;
+        for (SliderEnemy e : level.getSliderEnemies())           if (e.collidesWith(p)) return true;
+        for (AcceleratedEnemy e : level.getAcceleratedEnemies()) if (e.collidesWith(p)) return true;
         return false;
     }
 
@@ -159,15 +184,17 @@ public class GamePvM {
         }
     }
 
-    /** Reinicia completamente la partida PvM. */
+    /** Fuerza el avance al siguiente nivel (usado por el botón de saltar nivel). */
+    public void skipLevel() { advanceOrWin(); }
+
+    /** Reinicia solo el nivel actual. No cambia de nivel. */
     public void restart() {
-        currentLevelIndex = 0;
-        state             = GameState.PLAYING;
-        deathsPlayer      = 0;
-        deathsMachine     = 0;
-        tickCount         = 0;
-        secondsLeft       = TIME_LIMIT;
-        winner            = "";
+        state         = GameState.PLAYING;
+        deathsPlayer  = 0;
+        deathsMachine = 0;
+        tickCount     = 0;
+        secondsLeft   = TIME_LIMIT;
+        winner        = "";
         LevelPvP level = getCurrentLevel();
         player.setWalls(level.getBoard().getWalls());
         machine.setWalls(level.getBoard().getWalls());
