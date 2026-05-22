@@ -135,3 +135,4 @@ class LevelTest {
         levelWithCp.updateCheckpoints(p);
         assertTrue(cp.isActivated());
     }
+}
