@@ -10,6 +10,10 @@ import java.util.List;
  * Define el espacio donde ocurre la acción: el fondo, las paredes,
  * la zona de inicio y la zona final.
  * Implementa {@link IRenderable} para dibujarse en el panel del juego.
+ *
+ * <p>Dimensiones por defecto: 800x500 px.</p>
+ * <p>El fondo se dibuja en verde claro, las paredes en gris.</p>
+ * <p>Las zonas (StartZone y EndZone) se dibujan encima de las paredes.</p>
  */
 public class Board implements IRenderable {
 
