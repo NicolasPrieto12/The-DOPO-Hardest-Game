@@ -9,6 +9,12 @@ import java.util.List;
  * Usa {@link BoardPvP} con zonas de inicio y final opuestas para cada jugador.
  * Jugador 1 inicia izquierda → gana llegando a la derecha.
  * Jugador 2 inicia derecha  → gana llegando a la izquierda.
+ *
+ * <p>Diferencia clave con {@link Level}: el método {@link #resetPlayer(Player, StartZone)}
+ * NO reinicia las monedas al morir, para que la muerte de un jugador no afecte al otro.</p>
+ *
+ * <p>Solo {@link #fullReset(Player, StartZone)} reinicia las monedas,
+ * y se usa únicamente al reiniciar toda la partida.</p>
  */
 public class LevelPvP {
 
