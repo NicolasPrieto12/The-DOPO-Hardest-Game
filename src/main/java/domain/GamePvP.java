@@ -110,12 +110,17 @@ public class GamePvP {
 
         if (!player1Finished) {
             player1.move();
+            player1.tickInvincibility();
             level.updateCheckpoints(player1);
             handleCoins(level, player1);
             handleSkinCoins(level, player1);
+            handleGreenCoin(level, player1);
+            handleLifeSources(level, player1);
             if (checkEnemyCollision(level, player1)) {
-                deaths1++;
-                level.resetPlayer(player1, level.getBoard().getStartZone1());
+                if (!player1.absorbHit()) {
+                    deaths1++;
+                    level.resetPlayer(player1, level.getBoard().getStartZone1());
+                }
             }
             if (level.isCompleted() && level.getBoard().getEndZone1().checkLevelComplete(player1)) {
                 player1Finished = true;
@@ -127,12 +132,17 @@ public class GamePvP {
 
         if (!player2Finished) {
             player2.move();
+            player2.tickInvincibility();
             level.updateCheckpoints(player2);
             handleCoins(level, player2);
             handleSkinCoins(level, player2);
+            handleGreenCoin(level, player2);
+            handleLifeSources(level, player2);
             if (checkEnemyCollision(level, player2)) {
-                deaths2++;
-                level.resetPlayer(player2, level.getBoard().getStartZone2());
+                if (!player2.absorbHit()) {
+                    deaths2++;
+                    level.resetPlayer(player2, level.getBoard().getStartZone2());
+                }
             }
             if (level.isCompleted() && level.getBoard().getEndZone2().checkLevelComplete(player2)) {
                 player2Finished = true;
@@ -155,13 +165,24 @@ public class GamePvP {
         }
     }
 
+    private void handleGreenCoin(LevelPvP level, Player player) {
+        if (level.getGreenCoin() != null && level.getGreenCoin().collidesWith(player)) {
+            level.getGreenCoin().collect(player);
+        }
+    }
+
+    private void handleLifeSources(LevelPvP level, Player player) {
+        for (LifeSource ls : level.getLifeSources()) {
+            if (ls.collidesWith(player)) ls.collect(player);
+        }
+    }
+
     private boolean checkEnemyCollision(LevelPvP level, Player player) {
-        for (Enemy e : level.getEnemies()) {
-            if (e.collidesWith(player)) return true;
-        }
-        for (PatrolEnemy e : level.getPatrolEnemies()) {
-            if (e.collidesWith(player)) return true;
-        }
+        for (Bomb b : level.getBombs())                        if (b.collidesWith(player)) return true;
+        for (Enemy e : level.getEnemies())                     if (e.collidesWith(player)) return true;
+        for (PatrolEnemy e : level.getPatrolEnemies())         if (e.collidesWith(player)) return true;
+        for (SliderEnemy e : level.getSliderEnemies())         if (e.collidesWith(player)) return true;
+        for (AcceleratedEnemy e : level.getAcceleratedEnemies()) if (e.collidesWith(player)) return true;
         return false;
     }
 
@@ -181,13 +202,17 @@ public class GamePvP {
             next.getBoard().getStartZone2().resetPlayer(player2);
             player1.applyType(PlayerType.RED);
             player2.applyType(PlayerType.RED);
+            player1.resetCheckpoint();
+            player2.resetCheckpoint();
         } else {
             state = GameState.WIN;
         }
     }
 
-    /**
-     * Retorna el nombre del ganador comparando tiempos.
+    /** Fuerza el avance al siguiente nivel (usado por el botón de saltar nivel). */
+    public void skipLevel() { advanceOrWin(); }
+
+    /** Retorna el nombre del ganador comparando tiempos.
      *
      * @return "Jugador 1", "Jugador 2" o "Empate".
      */
@@ -201,18 +226,17 @@ public class GamePvP {
         return "Empate";
     }
 
-    /** Reinicia completamente la partida PvP. */
+    /** Reinicia solo el nivel actual. No cambia de nivel. */
     public void restart() {
-        currentLevelIndex = 0;
-        state             = GameState.PLAYING;
-        deaths1           = 0;
-        deaths2           = 0;
-        tickCount         = 0;
-        secondsLeft       = TIME_LIMIT;
-        timePlayer1       = -1;
-        timePlayer2       = -1;
-        player1Finished   = false;
-        player2Finished   = false;
+        state           = GameState.PLAYING;
+        deaths1         = 0;
+        deaths2         = 0;
+        tickCount       = 0;
+        secondsLeft     = TIME_LIMIT;
+        timePlayer1     = -1;
+        timePlayer2     = -1;
+        player1Finished = false;
+        player2Finished = false;
         LevelPvP level = getCurrentLevel();
         player1.setWalls(level.getBoard().getWalls());
         player2.setWalls(level.getBoard().getWalls());
