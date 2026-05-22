@@ -11,6 +11,9 @@ import java.util.List;
  * y dos zonas finales (cada jugador debe llegar al lado contrario).
  * Jugador 1 inicia izquierda y gana llegando a la derecha.
  * Jugador 2 inicia derecha y gana llegando a la izquierda.
+ *
+ * <p>Dimensiones: 800x500 px (igual que {@link Board}).</p>
+ * <p>Las cuatro zonas se dibujan encima de las paredes.</p>
  */
 public class BoardPvP implements IRenderable {
 
