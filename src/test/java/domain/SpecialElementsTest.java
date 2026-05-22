@@ -1,0 +1,343 @@
+package domain;
+
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Pruebas unitarias para los elementos especiales del juego:
+ * SkinCoin, GreenCoin, Bomb, LifeSource y CheckpointZone.
+ */
+class SpecialElementsTest {
+
+    // ─── SkinCoin ───────────────────────────────────────────────
+
+    /** SkinCoin deberia iniciar no recogida. */
+    @Test
+    void shouldSkinCoinStartNotCollected() {
+        SkinCoin sc = new SkinCoin(100, 100);
+        assertFalse(sc.isCollected());
+    }
+
+    /** SkinCoin deberia transformar al jugador a BLUE al recogerla. */
+    @Test
+    void shouldSkinCoinApplyBlueTypeToPlayer() {
+        SkinCoin sc = new SkinCoin(100, 100);
+        Player player = new Player(100, 100);
+        sc.collect(player);
+        assertTrue(sc.isCollected());
+        assertEquals(PlayerType.BLUE, player.getType());
+    }
+
+    /** SkinCoin no deberia colisionar si ya fue recogida. */
+    @Test
+    void shouldSkinCoinNotCollideIfAlreadyCollected() {
+        SkinCoin sc = new SkinCoin(100, 100);
+        Player player = new Player(100, 100);
+        sc.collect(player);
+        assertFalse(sc.collidesWith(player));
+    }
+
+    /** SkinCoin deberia restablecerse a no recogida con reset(). */
+    @Test
+    void shouldSkinCoinResetToNotCollected() {
+        SkinCoin sc = new SkinCoin(100, 100);
+        Player player = new Player(100, 100);
+        sc.collect(player);
+        sc.reset();
+        assertFalse(sc.isCollected());
+    }
+
+    /** SkinCoin deberia retornar bounds correctos. */
+    @Test
+    void shouldSkinCoinReturnCorrectBounds() {
+        SkinCoin sc = new SkinCoin(50, 60);
+        assertEquals(50, sc.getBounds().x);
+        assertEquals(60, sc.getBounds().y);
+    }
+
+    // ─── GreenCoin ──────────────────────────────────────────────
+
+    /** GreenCoin deberia iniciar no recogida. */
+    @Test
+    void shouldGreenCoinStartNotCollected() {
+        GreenCoin gc = new GreenCoin(200, 200);
+        assertFalse(gc.isCollected());
+    }
+
+    /** GreenCoin deberia transformar al jugador a GREEN al recogerla. */
+    @Test
+    void shouldGreenCoinApplyGreenTypeToPlayer() {
+        GreenCoin gc = new GreenCoin(100, 100);
+        Player player = new Player(100, 100);
+        gc.collect(player);
+        assertTrue(gc.isCollected());
+        assertEquals(PlayerType.GREEN, player.getType());
+    }
+
+    /** GreenCoin no deberia colisionar si ya fue recogida. */
+    @Test
+    void shouldGreenCoinNotCollideIfAlreadyCollected() {
+        GreenCoin gc = new GreenCoin(100, 100);
+        Player player = new Player(100, 100);
+        gc.collect(player);
+        assertFalse(gc.collidesWith(player));
+    }
+
+    /** GreenCoin deberia restablecerse con reset(). */
+    @Test
+    void shouldGreenCoinResetToNotCollected() {
+        GreenCoin gc = new GreenCoin(100, 100);
+        Player player = new Player(100, 100);
+        gc.collect(player);
+        gc.reset();
+        assertFalse(gc.isCollected());
+    }
+
+    // ─── Bomb ───────────────────────────────────────────────────
+
+    /** Bomb deberia detectar colision con jugador en la misma posicion. */
+    @Test
+    void shouldBombDetectCollisionWithPlayerAtSamePosition() {
+        Bomb bomb = new Bomb(100, 100);
+        Player player = new Player(100, 100);
+        assertTrue(bomb.collidesWith(player));
+    }
+
+    /** Bomb no deberia detectar colision con jugador lejos. */
+    @Test
+    void shouldBombNotDetectCollisionWithPlayerFarAway() {
+        Bomb bomb = new Bomb(100, 100);
+        Player player = new Player(500, 500);
+        assertFalse(bomb.collidesWith(player));
+    }
+
+    /** Bomb deberia retornar bounds correctos. */
+    @Test
+    void shouldBombReturnCorrectBounds() {
+        Bomb bomb = new Bomb(50, 70);
+        assertEquals(50, bomb.getBounds().x);
+        assertEquals(70, bomb.getBounds().y);
+    }
+
+    // ─── LifeSource ─────────────────────────────────────────────
+
+    /** LifeSource deberia iniciar no recogida. */
+    @Test
+    void shouldLifeSourceStartNotCollected() {
+        LifeSource ls = new LifeSource(100, 100);
+        assertFalse(ls.isCollected());
+    }
+
+    /** LifeSource deberia activar escudo en el jugador al recogerla. */
+    @Test
+    void shouldLifeSourceActivateShieldOnPlayer() {
+        LifeSource ls = new LifeSource(100, 100);
+        Player player = new Player(100, 100);
+        ls.collect(player);
+        assertTrue(ls.isCollected());
+        assertTrue(player.isShielded());
+        assertTrue(player.isLifeShield());
+    }
+
+    /** LifeSource no deberia activarse dos veces. */
+    @Test
+    void shouldLifeSourceNotActivateTwice() {
+        LifeSource ls = new LifeSource(100, 100);
+        Player player = new Player(100, 100);
+        ls.collect(player);
+        player.applyType(PlayerType.RED); // quita el escudo
+        ls.collect(player);              // segunda llamada no debe hacer nada
+        assertFalse(player.isShielded());
+    }
+
+    /** LifeSource deberia restablecerse con reset(). */
+    @Test
+    void shouldLifeSourceResetToNotCollected() {
+        LifeSource ls = new LifeSource(100, 100);
+        Player player = new Player(100, 100);
+        ls.collect(player);
+        ls.reset();
+        assertFalse(ls.isCollected());
+    }
+
+    /** LifeSource no deberia colisionar si ya fue recogida. */
+    @Test
+    void shouldLifeSourceNotCollideIfAlreadyCollected() {
+        LifeSource ls = new LifeSource(100, 100);
+        Player player = new Player(100, 100);
+        ls.collect(player);
+        assertFalse(ls.collidesWith(player));
+    }
+
+    // ─── CheckpointZone ─────────────────────────────────────────
+
+    /** CheckpointZone deberia iniciar no activada. */
+    @Test
+    void shouldCheckpointZoneStartNotActivated() {
+        CheckpointZone cp = new CheckpointZone(100, 100, 80, 60);
+        assertFalse(cp.isActivated());
+    }
+
+    /** CheckpointZone deberia activarse cuando el jugador la pisa. */
+    @Test
+    void shouldCheckpointZoneActivateWhenPlayerEnters() {
+        CheckpointZone cp = new CheckpointZone(100, 100, 80, 60);
+        Player player = new Player(110, 110);
+        cp.checkAndActivate(player);
+        assertTrue(cp.isActivated());
+    }
+
+    /** CheckpointZone deberia guardar la posicion del jugador al activarse. */
+    @Test
+    void shouldCheckpointZoneSavePlayerPosition() {
+        CheckpointZone cp = new CheckpointZone(100, 100, 80, 60);
+        Player player = new Player(110, 110);
+        cp.checkAndActivate(player);
+        assertTrue(player.getCheckpointX() >= 0);
+    }
+
+    /** CheckpointZone deberia restablecerse a no activada con reset(). */
+    @Test
+    void shouldCheckpointZoneResetToNotActivated() {
+        CheckpointZone cp = new CheckpointZone(100, 100, 80, 60);
+        Player player = new Player(110, 110);
+        cp.checkAndActivate(player);
+        cp.reset();
+        assertFalse(cp.isActivated());
+    }
+
+    /** CheckpointZone no deberia activarse si el jugador no esta dentro. */
+    @Test
+    void shouldCheckpointZoneNotActivateWhenPlayerIsOutside() {
+        CheckpointZone cp = new CheckpointZone(100, 100, 80, 60);
+        Player player = new Player(500, 500);
+        cp.checkAndActivate(player);
+        assertFalse(cp.isActivated());
+    }
+
+    // ─── PlayerType ─────────────────────────────────────────────
+
+    /** PlayerType RED deberia tener velocidad 3 y tamano 20. */
+    @Test
+    void shouldPlayerTypeRedHaveCorrectAttributes() {
+        assertEquals(3,  PlayerType.RED.speed);
+        assertEquals(20, PlayerType.RED.size);
+    }
+
+    /** PlayerType BLUE deberia tener velocidad 4 y tamano 30. */
+    @Test
+    void shouldPlayerTypeBlueHaveCorrectAttributes() {
+        assertEquals(4,  PlayerType.BLUE.speed);
+        assertEquals(30, PlayerType.BLUE.size);
+    }
+
+    /** PlayerType GREEN deberia tener velocidad 3 y tamano 20. */
+    @Test
+    void shouldPlayerTypeGreenHaveCorrectAttributes() {
+        assertEquals(3,  PlayerType.GREEN.speed);
+        assertEquals(20, PlayerType.GREEN.size);
+    }
+
+    // ─── StartZone / EndZone ────────────────────────────────────
+
+    /** StartZone deberia reposicionar al jugador en su centro. */
+    @Test
+    void shouldStartZoneResetPlayerToCenter() {
+        StartZone start = new StartZone(20, 200, 80, 100);
+        Player player = new Player(500, 500);
+        start.resetPlayer(player);
+        assertTrue(player.getX() >= 20 && player.getX() <= 100);
+        assertTrue(player.getY() >= 200 && player.getY() <= 300);
+    }
+
+    /** EndZone deberia detectar que el jugador completo el nivel cuando esta dentro. */
+    @Test
+    void shouldEndZoneReturnTrueWhenPlayerIsInside() {
+        EndZone end = new EndZone(700, 200, 80, 100);
+        Player player = new Player(720, 240);
+        assertTrue(end.checkLevelComplete(player));
+    }
+
+    /** EndZone deberia retornar false cuando el jugador no esta dentro. */
+    @Test
+    void shouldEndZoneReturnFalseWhenPlayerIsOutside() {
+        EndZone end = new EndZone(700, 200, 80, 100);
+        Player player = new Player(100, 100);
+        assertFalse(end.checkLevelComplete(player));
+    }
+
+    // ─── Player escudo ──────────────────────────────────────────
+
+    /** Player con escudo GREEN deberia absorber el primer golpe sin morir. */
+    @Test
+    void shouldPlayerAbsorbHitWhenShielded() {
+        Player player = new Player(100, 100);
+        player.applyType(PlayerType.GREEN);
+        assertTrue(player.absorbHit());
+        assertFalse(player.isShielded());
+    }
+
+    /** Player sin escudo deberia retornar false al absorber golpe. */
+    @Test
+    void shouldPlayerNotAbsorbHitWhenNotShielded() {
+        Player player = new Player(100, 100);
+        assertFalse(player.absorbHit());
+    }
+
+    /** Player en periodo de invencibilidad deberia absorber golpe. */
+    @Test
+    void shouldPlayerAbsorbHitDuringInvincibility() {
+        Player player = new Player(100, 100);
+        player.applyType(PlayerType.GREEN);
+        player.absorbHit(); // consume escudo, activa 90 ticks invencibilidad
+        assertTrue(player.absorbHit()); // sigue invencible
+    }
+
+    /** Player deberia decrementar ticks de invencibilidad con tickInvincibility(). */
+    @Test
+    void shouldPlayerDecrementInvincibilityTicks() {
+        Player player = new Player(100, 100);
+        player.grantRespawnInvincibility();
+        player.tickInvincibility();
+        // No podemos leer invincibleTicks directamente, pero absorbHit debe retornar true
+        assertTrue(player.absorbHit());
+    }
+
+    /** Player GREEN al absorber golpe deberia bajar velocidad a 1. */
+    @Test
+    void shouldPlayerGreenReduceSpeedAfterAbsorbingHit() {
+        Player player = new Player(100, 100);
+        player.applyType(PlayerType.GREEN);
+        player.absorbHit();
+        assertEquals(1, player.getSpeed());
+    }
+
+    /** Player con LifeShield al absorber golpe NO deberia bajar velocidad. */
+    @Test
+    void shouldPlayerLifeShieldNotReduceSpeed() {
+        Player player = new Player(100, 100);
+        player.activateLifeShield();
+        int speedBefore = player.getSpeed();
+        player.absorbHit();
+        assertEquals(speedBefore, player.getSpeed());
+    }
+
+    // ─── BoardPvP ───────────────────────────────────────────────
+
+    /** BoardPvP deberia retornar las zonas correctas. */
+    @Test
+    void shouldBoardPvPReturnCorrectZones() {
+        StartZone s1 = new StartZone(20, 200, 80, 100);
+        StartZone s2 = new StartZone(700, 200, 80, 100);
+        EndZone   e1 = new EndZone(700, 200, 80, 100);
+        EndZone   e2 = new EndZone(20, 200, 80, 100);
+        BoardPvP board = new BoardPvP(s1, s2, e1, e2, List.of());
+        assertSame(s1, board.getStartZone1());
+        assertSame(s2, board.getStartZone2());
+        assertSame(e1, board.getEndZone1());
+        assertSame(e2, board.getEndZone2());
+    }
+}

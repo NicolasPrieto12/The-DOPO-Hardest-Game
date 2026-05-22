@@ -89,8 +89,8 @@ class PvMAcceptanceTest {
 
     /**
      * Escenario: la máquina aleatoria se mueve.
-     * Dado que la máquina aleatoria actualiza su IA
-     * Entonces debe moverse en alguna dirección.
+     * Dado que la máquina aleatoria actualiza su IA con objetivo a la izquierda
+     * Entonces debe moverse en alguna dirección tras suficientes ticks.
      */
     @Test
     void shouldMoveRandomMachineAfterAIUpdate() {
@@ -98,8 +98,10 @@ class PvMAcceptanceTest {
         machine.setWalls(List.of());
         int initialX = machine.getX();
         int initialY = machine.getY();
-        for (int i = 0; i < 100; i++) {
-            machine.updateAI(List.of(coin), new ArrayList<>(), 30, 240);
+        // Sin paredes y con currentDir=2 (izquierda) inicial,
+        // la maquina se mueve 3px/tick desde el primer tick
+        for (int i = 0; i < 5; i++) {
+            machine.updateAI(new ArrayList<>(), new ArrayList<>(), 30, 240);
         }
         assertTrue(machine.getX() != initialX || machine.getY() != initialY);
     }
