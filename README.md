@@ -282,6 +282,34 @@ Sí, en los modos **Un Jugador** y **PvP** hay botón de guardar/cargar. El modo
 
 ---
 
+## 📊 Diagrama de Relaciones Principales
+
+```
+Game (Singleton)
+  ├── Player
+  └── Level[]
+        ├── Board (StartZone + EndZone + walls)
+        ├── Enemy[] / PatrolEnemy[] / SliderEnemy[] / AcceleratedEnemy[]
+        ├── Coin[] / SkinCoin[] / GreenCoin
+        ├── Bomb[] / LifeSource[]
+        └── CheckpointZone[]
+
+GamePvP
+  ├── Player (x2)
+  └── LevelPvP[]
+        └── BoardPvP (StartZone x2 + EndZone x2 + walls)
+
+GamePvM
+  ├── Player
+  ├── MachinePlayer extends Player
+  │     └── MachineProfile (RANDOM | EXPERT)
+  └── LevelPvP[]
+```
+
+---
+
+## ▶️ Cómo Ejecutar
+
 ### Requisitos
 - Java 17 o superior
 - Maven 3.8+
