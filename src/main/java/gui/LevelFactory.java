@@ -10,7 +10,12 @@ import java.util.List;
  * Fábrica de niveles del juego.
  * Nivel 1: tablero medio con obstáculos, 2 enemigos básicos, 4 monedas.
  * Nivel 2: tablero con más obstáculos, 8 monedas, 1 básico + 3 patrulleros, 1 checkpoint.
+ * Nivel 3: laberinto zigzag, 8 monedas + GreenCoin, 5 SliderEnemy + 5 AcceleratedEnemy, 6 bombas.
+ * Nivel 4: diseño en cruz, 10 monedas + SkinCoin + GreenCoin, 8 AcceleratedEnemy, 4 bombas + 2 LifeSource.
  * Ambos niveles son idénticos en diseño para modo single y PvP.
+ *
+ * <p>Todos los métodos son estáticos. No se necesita instanciar esta clase.</p>
+ * <p>Cada modo (single, PvP, PvM) tiene sus propios métodos de construcción de nivel.</p>
  */
 public class LevelFactory {
 
