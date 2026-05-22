@@ -234,6 +234,11 @@ Pruebas de comportamiento en tiempo de ejecución verificadas:
 | Checkpoint activo → respawn en checkpoint | ✅ |
 | LifeSource → absorbe primer golpe | ✅ |
 | Reinicio → muertes y tiempo a cero | ✅ |
+| Pausa → estado PAUSED, reanuda → PLAYING | ✅ |
+| Singleton Game → misma instancia siempre | ✅ |
+| Moneda ya recogida → no genera colisión | ✅ |
+| Enemigo llega a borde → invierte dirección | ✅ |
+| Enemigo llega a zona prohibida → invierte dirección | ✅ |
 
 ---
 
