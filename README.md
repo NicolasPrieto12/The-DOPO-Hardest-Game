@@ -6,10 +6,6 @@
 - 👤 Nicolás Prieto Ramos
 - 👤 Sebastián Peña Sánchez
 
-**Curso:** Ingeniería de Software — 2026  
-**Universidad:** Pontificia Universidad Javeriana  
-**Tecnología:** Java 17+ · Maven · JUnit 5 · IntelliJ IDEA
-
 ---
 
 ## 📋 Descripción
@@ -113,58 +109,6 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 ---
 
-## 🏗️ Arquitectura del Proyecto
-
-```
-src/
-├── main/java/
-│   ├── domain/          # Lógica del juego (sin dependencias de GUI)
-│   │   ├── Game.java            # Singleton - modo un jugador
-│   │   ├── GamePvP.java         # Controlador modo PvP
-│   │   ├── GamePvM.java         # Controlador modo PvM
-│   │   ├── Player.java          # Jugador humano
-│   │   ├── MachinePlayer.java   # IA (hereda de Player)
-│   │   ├── Level.java           # Nivel single player
-│   │   ├── LevelPvP.java        # Nivel PvP/PvM
-│   │   ├── Enemy.java           # Enemigo básico
-│   │   ├── PatrolEnemy.java     # Enemigo patrullero
-│   │   ├── SliderEnemy.java     # Enemigo deslizador
-│   │   ├── AcceleratedEnemy.java# Enemigo acelerado
-│   │   ├── Coin.java            # Moneda normal
-│   │   ├── SkinCoin.java        # Moneda de transformación azul
-│   │   ├── GreenCoin.java       # Moneda de transformación verde
-│   │   ├── Bomb.java            # Bomba estática
-│   │   ├── LifeSource.java      # Fuente de vida
-│   │   ├── CheckpointZone.java  # Zona de checkpoint
-│   │   ├── SaveManager.java     # Guardado/carga de partidas
-│   │   └── GameState.java       # Constantes de estado
-│   └── gui/             # Interfaz gráfica (Swing)
-│       ├── GameGUI.java         # Ventana principal
-│       ├── GamePanel.java       # Panel modo single
-│       ├── PvPPanel.java        # Panel modo PvP
-│       ├── PvMPanel.java        # Panel modo PvM
-│       ├── LevelFactory.java    # Fábrica de niveles
-│       ├── MainMenuPanel.java   # Menú principal
-│       └── InstructionsPanel.java # Pantalla de instrucciones
-└── test/java/domain/    # Pruebas unitarias y de aceptación
-    ├── GameTest.java
-    ├── PlayerTest.java
-    ├── CoinTest.java
-    ├── EnemyTest.java
-    ├── LevelTest.java
-    ├── SinglePlayerAcceptanceTest.java
-    ├── PvPAcceptanceTest.java
-    └── PvMAcceptanceTest.java
-```
-
-**Patrones de diseño aplicados:**
-- **Singleton** — `Game` (modo un jugador)
-- **Factory Method** — `LevelFactory` (construcción de niveles)
-- **Strategy** — `MachineProfile` (comportamiento de la IA: RANDOM / EXPERT)
-- **Template Method** — Interfaces `IMovable`, `ICollidable`, `IRenderable`
-
----
-
 ## 🧪 Pruebas
 
 ### Cobertura de Pruebas
@@ -263,48 +207,6 @@ Hay dos tipos de escudo:
 2. **LifeSource**: al absorber un golpe, la velocidad NO cambia
 
 Ambos otorgan 90 ticks de invencibilidad tras absorber el golpe.
-
----
-
-## ❓ Preguntas Frecuentes
-
-**¿Puedo jugar solo sin necesidad de un segundo jugador?**  
-Sí, el modo **Un Jugador** es completamente independiente.
-
-**¿Qué pasa si el tiempo se agota?**  
-El juego pasa al estado `TIMEOUT` y muestra la pantalla de tiempo agotado. Se puede reiniciar.
-
-**¿Las monedas se reinician al morir en PvP?**  
-No. En PvP y PvM, la muerte de un jugador solo lo reposiciona a él. Las monedas permanecen como están.
-
-**¿Puedo guardar la partida?**  
-Sí, en los modos **Un Jugador** y **PvP** hay botón de guardar/cargar. El modo PvM no soporta guardado.
-
----
-
-## 📊 Diagrama de Relaciones Principales
-
-```
-Game (Singleton)
-  ├── Player
-  └── Level[]
-        ├── Board (StartZone + EndZone + walls)
-        ├── Enemy[] / PatrolEnemy[] / SliderEnemy[] / AcceleratedEnemy[]
-        ├── Coin[] / SkinCoin[] / GreenCoin
-        ├── Bomb[] / LifeSource[]
-        └── CheckpointZone[]
-
-GamePvP
-  ├── Player (x2)
-  └── LevelPvP[]
-        └── BoardPvP (StartZone x2 + EndZone x2 + walls)
-
-GamePvM
-  ├── Player
-  ├── MachinePlayer extends Player
-  │     └── MachineProfile (RANDOM | EXPERT)
-  └── LevelPvP[]
-```
 
 ---
 
