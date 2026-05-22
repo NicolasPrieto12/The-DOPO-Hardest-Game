@@ -10,6 +10,12 @@ import java.util.List;
  * Enemigo Deslizador Vertical (Tipo V).
  * Se desplaza exclusivamente en línea recta vertical.
  * Rebota al chocar con paredes superior e inferior. Dificultad: Baja.
+ *
+ * <p>Velocidad: configurable (normalmente 2 px/tick).</p>
+ * <p>Tamaño: 16x16 px.</p>
+ * <p>Color: azul con borde gris oscuro.</p>
+ *
+ * <p>Aparece en el nivel 3 de todos los modos de juego (5 instancias).</p>
  */
 public class SliderEnemy implements IMovable, ICollidable, IRenderable {
 
