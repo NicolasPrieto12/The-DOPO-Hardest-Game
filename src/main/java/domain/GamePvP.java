@@ -8,6 +8,10 @@ import java.util.List;
  * Jugador 2 inicia en la derecha y gana llegando a la izquierda.
  * Gana quien complete el nivel en menor tiempo.
  * Jugador 1 usa flechas, Jugador 2 usa WASD.
+ *
+ * <p>Las monedas son compartidas pero la muerte de un jugador NO reinicia las monedas del otro.</p>
+ * <p>Ambos jugadores pueden estar en el tablero simultáneamente y se mueven de forma independiente.</p>
+ * <p>El tiempo se mide desde el inicio del nivel hasta que el primer jugador llega a su EndZone.</p>
  */
 public class GamePvP {
 
