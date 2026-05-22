@@ -2,8 +2,12 @@
 
 > Inspirado en *The World's Hardest Game*, desarrollado en Java con Swing.
 
-**Autores:** Nicolás Prieto Ramos · Sebastián Peña Sánchez  
+**Autores:**
+- 👤 Nicolás Prieto Ramos
+- 👤 Sebastián Peña Sánchez
+
 **Curso:** Ingeniería de Software — 2026  
+**Universidad:** Pontificia Universidad Javeriana  
 **Tecnología:** Java 17+ · Maven · JUnit 5 · IntelliJ IDEA
 
 ---
