@@ -213,7 +213,7 @@ Ambos otorgan 90 ticks de invencibilidad tras absorber el golpe.
 ## Cómo Ejecutar
 
 ### Requisitos
-- Java 17 o superior
+- Java 21 o superior
 - Maven 3.8+
 - Git
 
@@ -240,7 +240,18 @@ java -jar target/dopo-hardest-game.jar
 mvn test
 ```
 
-### 5. Ejecutar con cobertura (IntelliJ)
+### 5. Abrir en Eclipse (versión 4.31+)
+1. **File > Import > Maven > Existing Maven Projects**
+2. Seleccionar la carpeta `ProyectoFinal`
+3. Click en **Finish** — Eclipse descarga las dependencias automáticamente
+4. Click derecho sobre el proyecto → **Run As > Maven build...**
+5. En **Goals** escribir `exec:java` → **Run**
+
+### 6. Ejecutar pruebas en Eclipse
+1. Click derecho sobre `src/test/java/domain/`
+2. **Run As > JUnit Test**
+
+### 7. Ejecutar con cobertura (IntelliJ)
 1. Click derecho sobre `src/test/java/domain/`
 2. Seleccionar **"Run 'All Tests' with Coverage"**
 3. Ver el reporte en el panel **Coverage**
