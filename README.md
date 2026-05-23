@@ -133,7 +133,7 @@ El proyecto cuenta con **8 clases de prueba** con más de **40 casos de prueba**
 
 > ⚠️ **IMPORTANTE:** Tomar el screenshot del reporte de coverage en IntelliJ y guardarlo como `docs/coverage.png` para que aparezca aqui.
 
-![Coverage Report](docs/coverage.png)
+![Coverage Report](docs/coverage.png?v=2)
 
 Clases cubiertas por las pruebas:
 
