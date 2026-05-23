@@ -241,10 +241,18 @@ mvn test
 ```
 
 ### 5. Abrir en Eclipse (versión 4.31+)
+
+**Opción 1 — Descargar el ZIP desde GitHub**
+1. En GitHub, el usuario debe hacer click en el botón verde **Code > Download ZIP**
+2. Se extrae el ZIP en alguna carpeta del PC
+3. La carpeta extraída es el proyecto
+
+Luego, para abrirlo en Eclipse:
 1. **File > Import > Maven > Existing Maven Projects**
-2. Click en **Finish** — Eclipse descarga las dependencias automáticamente
-3. Click derecho sobre el proyecto → **Run As > Maven build...**
-4. En **Goals** escribir `exec:java` → **Run**
+2. En **Root Directory** se navega hasta la carpeta extraída (la que contiene el `pom.xml`)
+3. Click en **Finish** — Eclipse descarga las dependencias automáticamente
+4. Click derecho sobre el proyecto **> Run As > Maven build...**
+5. En **Goals** se escribe `exec:java` **> Run**
 
 ### 6. Ejecutar pruebas en Eclipse
 1. Click derecho sobre `src/test/java/domain/`
