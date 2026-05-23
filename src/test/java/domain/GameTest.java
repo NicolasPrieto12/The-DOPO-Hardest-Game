@@ -235,4 +235,290 @@ class GameTest {
         assertEquals(90, game.getSecondsLeft());
         assertEquals(0, game.getCurrentLevelIndex());
     }
+
+    /** update() no deberia actualizar cuando el estado es PAUSED. */
+    @Test
+    void shouldUpdateNotRunWhenStateIsPaused() {
+        game.pause();
+        int deathsBefore = game.getDeaths();
+        game.update();
+        assertEquals(deathsBefore, game.getDeaths());
+    }
+
+    /** update() no deberia actualizar cuando el estado es TIMEOUT. */
+    @Test
+    void shouldUpdateNotRunWhenStateIsTimeout() {
+        game.setState(GameState.TIMEOUT);
+        int deathsBefore = game.getDeaths();
+        game.update();
+        assertEquals(deathsBefore, game.getDeaths());
+    }
+
+    /** getPlayer deberia retornar el jugador del juego. */
+    @Test
+    void shouldGetPlayerReturnCorrectPlayer() {
+        assertSame(player, game.getPlayer());
+    }
+
+    /** getCurrentLevel deberia retornar el nivel actual. */
+    @Test
+    void shouldGetCurrentLevelReturnCurrentLevel() {
+        assertNotNull(game.getCurrentLevel());
+    }
+
+    /** start() deberia establecer estado PLAYING. */
+    @Test
+    void shouldStartSetPlayingState() {
+        game.setState(GameState.PAUSED);
+        game.start();
+        assertEquals(GameState.PLAYING, game.getState());
+    }
+
+    /** checkDeath() con checkpoint activo deberia respetar el checkpoint. */
+    @Test
+    void shouldCheckDeathRespawnAtCheckpointWhenActive() {
+        player.saveCheckpoint(390, 230);
+        coin.collect();
+        game.checkDeath();
+        assertEquals(390, player.getX());
+        assertEquals(230, player.getY());
+        assertTrue(coin.isCollected());
+    }
+
+    /** update() deberia matar al jugador al colisionar con SliderEnemy. */
+    @Test
+    void shouldUpdateKillPlayerOnSliderEnemyCollision() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        Player p = new Player(50, 240);
+        Coin c = new Coin(400, 240);
+        SliderEnemy slider = new SliderEnemy(50, 240, 3, 500);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(c), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(slider), new java.util.ArrayList<>(), new java.util.ArrayList<>(), null);
+        Game g = Game.getInstance(p, List.of(lv));
+        g.start();
+        g.update();
+        assertEquals(1, g.getDeaths());
+    }
+
+    /** update() deberia matar al jugador al colisionar con AcceleratedEnemy. */
+    @Test
+    void shouldUpdateKillPlayerOnAcceleratedEnemyCollision() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        Player p = new Player(50, 240);
+        Coin c = new Coin(400, 240);
+        AcceleratedEnemy ae = new AcceleratedEnemy(50, 240, 0, 0, 800, 500);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(c), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            new java.util.ArrayList<>(), List.of(ae), new java.util.ArrayList<>(), null);
+        Game g = Game.getInstance(p, List.of(lv));
+        g.start();
+        g.update();
+        assertEquals(1, g.getDeaths());
+    }
+
+    /** update() deberia matar al jugador al colisionar con Bomb. */
+    @Test
+    void shouldUpdateKillPlayerOnBombCollision() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        Player p = new Player(50, 240);
+        Coin c = new Coin(400, 240);
+        Bomb bomb = new Bomb(50, 240);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(c), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            new java.util.ArrayList<>(), new java.util.ArrayList<>(), List.of(bomb), null);
+        Game g = Game.getInstance(p, List.of(lv));
+        g.start();
+        g.update();
+        assertEquals(1, g.getDeaths());
+    }
+
+    /** update() deberia recoger SkinCoin al colisionar. */
+    @Test
+    void shouldUpdateCollectSkinCoinOnCollision() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        Player p = new Player(50, 240);
+        Coin c = new Coin(400, 240);
+        SkinCoin sc = new SkinCoin(50, 240);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(c), List.of(sc), new java.util.ArrayList<>());
+        Game g = Game.getInstance(p, List.of(lv));
+        g.start();
+        g.update();
+        assertTrue(sc.isCollected());
+        assertEquals(PlayerType.BLUE, p.getType());
+    }
+
+    /** update() deberia recoger GreenCoin al colisionar. */
+    @Test
+    void shouldUpdateCollectGreenCoinOnCollision() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        Player p = new Player(50, 240);
+        Coin c = new Coin(400, 240);
+        GreenCoin gc = new GreenCoin(50, 240);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(c), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            new java.util.ArrayList<>(), new java.util.ArrayList<>(), new java.util.ArrayList<>(), gc);
+        Game g = Game.getInstance(p, List.of(lv));
+        g.start();
+        g.update();
+        assertTrue(gc.isCollected());
+    }
+
+    /** update() deberia recoger LifeSource al colisionar. */
+    @Test
+    void shouldUpdateCollectLifeSourceOnCollision() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        Player p = new Player(50, 240);
+        Coin c = new Coin(400, 240);
+        LifeSource ls = new LifeSource(50, 240);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(c), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            new java.util.ArrayList<>(), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            null, List.of(ls));
+        Game g = Game.getInstance(p, List.of(lv));
+        g.start();
+        g.update();
+        assertTrue(ls.isCollected());
+    }
+
+    /** nextLevel() deberia resetear tipo y checkpoint del jugador al avanzar. */
+    @Test
+    void shouldNextLevelResetPlayerTypeAndCheckpointWhenAdvancing() {
+        Game.resetInstance();
+        StartZone s1 = new StartZone(20, 200, 80, 100);
+        EndZone   e1 = new EndZone(700, 200, 80, 100);
+        StartZone s2 = new StartZone(20, 200, 80, 100);
+        EndZone   e2 = new EndZone(700, 200, 80, 100);
+        Board b1 = new Board(s1, e1, List.of());
+        Board b2 = new Board(s2, e2, List.of());
+        Player p = new Player(50, 240);
+        p.applyType(PlayerType.BLUE);
+        p.saveCheckpoint(300, 200);
+        Level lv1 = new Level(1, b1, List.of(), List.of(new Coin(400, 240)));
+        Level lv2 = new Level(2, b2, List.of(), List.of(new Coin(400, 240)));
+        Game g = Game.getInstance(p, List.of(lv1, lv2));
+        g.nextLevel();
+        assertEquals(PlayerType.RED, p.getType());
+        assertEquals(-1, p.getCheckpointX());
+    }
+
+    /** Level.reset() con GreenCoin deberia resetearla. */
+    @Test
+    void shouldLevelResetGreenCoinWhenPresent() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        GreenCoin gc = new GreenCoin(400, 240);
+        Player p = new Player(50, 240);
+        gc.collect(p);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(new Coin(300, 240)), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            new java.util.ArrayList<>(), new java.util.ArrayList<>(), new java.util.ArrayList<>(), gc);
+        lv.reset(p);
+        assertFalse(gc.isCollected());
+    }
+
+    /** Level.reset() con LifeSource deberia resetearla. */
+    @Test
+    void shouldLevelResetLifeSourceWhenPresent() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        LifeSource ls = new LifeSource(400, 240);
+        Player p = new Player(50, 240);
+        ls.collect(p);
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            List.of(new Coin(300, 240)), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            new java.util.ArrayList<>(), new java.util.ArrayList<>(), new java.util.ArrayList<>(),
+            null, List.of(ls));
+        lv.reset(p);
+        assertFalse(ls.isCollected());
+    }
+
+    /** update() deberia matar al jugador al colisionar con PatrolEnemy. */
+    @Test
+    void shouldUpdateKillPlayerOnPatrolEnemyCollision() {
+        Game.resetInstance();
+        StartZone start = new StartZone(20, 200, 80, 100);
+        EndZone   end   = new EndZone(700, 200, 80, 100);
+        Board board = new Board(start, end, List.of());
+        Player p = new Player(50, 240);
+        Coin c = new Coin(400, 240);
+        PatrolEnemy patrol = new PatrolEnemy(50, 240, 3, new int[][]{{51, 240}});
+        Level lv = new Level(1, board, new java.util.ArrayList<>(), List.of(patrol),
+            List.of(c), new java.util.ArrayList<>(), new java.util.ArrayList<>());
+        Game g = Game.getInstance(p, List.of(lv));
+        g.start();
+        g.update();
+        assertEquals(1, g.getDeaths());
+    }
+
+    /** update() con GreenCoin null no deberia lanzar excepcion. */
+    @Test
+    void shouldUpdateNotThrowWhenGreenCoinIsNull() {
+        game.start();
+        assertDoesNotThrow(() -> game.update());
+    }
+
+    /** Game getInstance deberia retornar instancia existente sin crear nueva. */
+    @Test
+    void shouldGetInstanceReturnExistingInstanceWithoutCreatingNew() {
+        Game first = Game.getInstance();
+        Game second = Game.getInstance(player, List.of(game.getCurrentLevel()));
+        assertSame(first, second);
+    }
+
+    /** update() deberia decrementar secondsLeft cada 60 ticks. */
+    @Test
+    void shouldUpdateDecrementSecondsLeftEvery60Ticks() {
+        game.start();
+        for (int i = 0; i < 60; i++) game.update();
+        assertEquals(179, game.getSecondsLeft());
+    }
+
+    /** checkDeath() con escudo LifeSource no deberia incrementar muertes. */
+    @Test
+    void shouldCheckDeathNotIncrementDeathsWhenLifeShieldActive() {
+        player.activateLifeShield();
+        game.checkDeath();
+        assertEquals(0, game.getDeaths());
+    }
+
+    /** pause() en estado WIN no deberia cambiar el estado. */
+    @Test
+    void shouldPauseNotChangeStateWhenStateIsWin() {
+        game.nextLevel();
+        assertEquals(GameState.WIN, game.getState());
+        game.pause();
+        assertEquals(GameState.WIN, game.getState());
+    }
+
+    /** pause() en estado TIMEOUT no deberia cambiar el estado. */
+    @Test
+    void shouldPauseNotChangeStateWhenStateIsTimeout() {
+        game.setState(GameState.TIMEOUT);
+        game.pause();
+        assertEquals(GameState.TIMEOUT, game.getState());
+    }
 }

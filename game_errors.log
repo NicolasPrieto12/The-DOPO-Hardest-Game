@@ -2,3 +2,472 @@
 [2026-05-18 20:31:59] [INFO]  Partida single cargada desde: C:\Users\Nicolas\Documents\partida2.dopo
 [2026-05-20 10:06:34] [INFO]  Partida single guardada en: C:\Users\Nicolas\Documents\partida.dopo
 [2026-05-20 10:06:45] [INFO]  Partida single cargada desde: C:\Users\Nicolas\Documents\partida.dopo
+[2026-05-22 18:26:45] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:26:45] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 18:26:45]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 18:26:45] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:26:45] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 18:26:45] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:26:45] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 18:26:45] [WARN]  advertencia de prueba
+[2026-05-22 18:26:45] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:26:45] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:26:45] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 18:26:45] [INFO]  mensaje de prueba
+[2026-05-22 18:26:45] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 18:26:45]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 18:26:45] [ERROR] error prueba
+[2026-05-22 18:26:45]         Causa: RuntimeException - causa
+[2026-05-22 18:26:45] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:26:45] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:26:45] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 18:26:45] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:26:45] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 18:26:45] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:26:45] [ERROR] error simple
+[2026-05-22 18:29:44] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:29:44] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 18:29:44]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 18:29:44] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:29:44] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 18:29:44] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:29:44] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 18:29:44] [WARN]  advertencia de prueba
+[2026-05-22 18:29:44] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:29:44] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:29:44] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 18:29:44] [INFO]  mensaje de prueba
+[2026-05-22 18:29:44] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 18:29:44]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 18:29:44] [ERROR] error prueba
+[2026-05-22 18:29:44]         Causa: RuntimeException - causa
+[2026-05-22 18:29:44] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:29:44] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 18:29:44] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 18:29:44] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:29:44] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 18:29:44] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 18:29:44] [ERROR] error simple
+[2026-05-22 19:34:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:34:14] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:34:14]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:34:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:34:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:34:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:34:14] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:34:14] [WARN]  advertencia de prueba
+[2026-05-22 19:34:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:34:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:34:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:34:14] [INFO]  mensaje de prueba
+[2026-05-22 19:34:14] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 19:34:14]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:34:14] [ERROR] error prueba
+[2026-05-22 19:34:14]         Causa: RuntimeException - causa
+[2026-05-22 19:34:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:34:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:34:14] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:34:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:34:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:34:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:34:14] [ERROR] error simple
+[2026-05-22 19:41:54] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:41:54] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:41:54]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:41:54] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:41:54] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:41:54] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:41:54] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:41:54] [WARN]  advertencia de prueba
+[2026-05-22 19:41:54] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:41:54] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:41:54] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:41:54] [INFO]  mensaje de prueba
+[2026-05-22 19:41:54] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 19:41:54]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:41:54] [ERROR] error prueba
+[2026-05-22 19:41:54]         Causa: RuntimeException - causa
+[2026-05-22 19:41:54] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:41:54] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:41:54] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:41:54] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:41:54] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:41:54] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:41:54] [ERROR] error simple
+[2026-05-22 19:44:49] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:44:50] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:44:50]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:44:50] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:44:50] [WARN]  advertencia de prueba
+[2026-05-22 19:44:50] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:44:50] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:44:50]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:44:50] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  mensaje de prueba
+[2026-05-22 19:44:50] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 19:44:50]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:44:50] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 19:44:50]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:44:50] [ERROR] error prueba
+[2026-05-22 19:44:50]         Causa: RuntimeException - causa
+[2026-05-22 19:44:50] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:44:50] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:44:50] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:44:50] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:44:50] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:44:50] [ERROR] error simple
+[2026-05-22 19:48:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:48:27] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:48:27]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:48:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:48:27] [WARN]  advertencia de prueba
+[2026-05-22 19:48:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:48:27] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:48:27]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:48:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  mensaje de prueba
+[2026-05-22 19:48:27] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 19:48:27]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:48:27] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 19:48:27]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:48:27] [ERROR] error prueba
+[2026-05-22 19:48:27]         Causa: RuntimeException - causa
+[2026-05-22 19:48:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:48:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:48:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:48:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:48:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:48:27] [ERROR] error simple
+[2026-05-22 19:48:27] [ERROR] error con null
+[2026-05-22 19:52:09] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:52:09] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:52:09]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:52:09] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:52:09] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:52:09] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:52:09] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:52:09] [WARN]  advertencia de prueba
+[2026-05-22 19:52:09] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:52:09] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:52:09]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:52:09] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:52:09] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:52:09] [INFO]  mensaje de prueba
+[2026-05-22 19:52:09] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 19:52:09]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:52:09] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 19:52:09]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:52:09] [ERROR] error prueba
+[2026-05-22 19:52:10]         Causa: RuntimeException - causa
+[2026-05-22 19:52:10] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:52:10] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:52:10] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:52:10] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:52:10] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:52:10] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:52:10] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:52:10] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:52:10] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:52:10] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:52:10] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:52:10] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:52:10] [ERROR] error simple
+[2026-05-22 19:52:10] [ERROR] error con null
+[2026-05-22 19:57:55] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:57:56] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:57:56]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:57:56] [WARN]  advertencia de prueba
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:57:56] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 19:57:56]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  mensaje de prueba
+[2026-05-22 19:57:56] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 19:57:56]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:57:56] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 19:57:56]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 19:57:56] [ERROR] error prueba
+[2026-05-22 19:57:56]         Causa: RuntimeException - causa
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 19:57:56] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 19:57:56] [ERROR] error simple
+[2026-05-22 19:57:56] [ERROR] error con null
+[2026-05-22 20:03:23] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:03:23] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:03:23]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:03:23] [WARN]  advertencia de prueba
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:03:23] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:03:23]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  mensaje de prueba
+[2026-05-22 20:03:23] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 20:03:23]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:03:23] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 20:03:23]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:03:23] [ERROR] error prueba
+[2026-05-22 20:03:23]         Causa: RuntimeException - causa
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:03:23] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:03:23] [ERROR] error simple
+[2026-05-22 20:03:24] [ERROR] error con null
+[2026-05-22 20:07:42] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:07:42] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:07:42]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:07:42] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:42] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:07:42] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:07:42] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:07:42] [WARN]  advertencia de prueba
+[2026-05-22 20:07:42] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:42] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:07:43] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:07:43]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:07:43] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  mensaje de prueba
+[2026-05-22 20:07:43] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 20:07:43]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:07:43] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:07:43] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 20:07:43]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:07:43] [ERROR] error prueba
+[2026-05-22 20:07:43]         Causa: RuntimeException - causa
+[2026-05-22 20:07:43] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:07:43] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:07:43] [ERROR] error simple
+[2026-05-22 20:07:44] [ERROR] error con null
+[2026-05-22 20:07:44] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:07:44] [ERROR] Error al exportar estadisticas PvM a: /ruta/invalida/stats.txt
+[2026-05-22 20:07:44]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:07:44] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:07:44] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:07:45] [ERROR] Error al exportar estadisticas single a: /ruta/invalida/stats.txt
+[2026-05-22 20:07:45]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:07:45] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:07:45] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:07:45] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:07:45] [ERROR] Error al exportar estadisticas PvP a: /ruta/invalida/stats.txt
+[2026-05-22 20:07:45]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:07:45] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:14] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:10:14]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:14] [WARN]  advertencia de prueba
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:14] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:10:14]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  mensaje de prueba
+[2026-05-22 20:10:14] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 20:10:14]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:14] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 20:10:14]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:10:14] [ERROR] error prueba
+[2026-05-22 20:10:14]         Causa: RuntimeException - causa
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:14] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:14] [ERROR] error simple
+[2026-05-22 20:10:16] [ERROR] error con null
+[2026-05-22 20:10:16] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:16] [ERROR] Error al exportar estadisticas PvM a: /ruta/invalida/stats.txt
+[2026-05-22 20:10:16]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:16] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:16] [ERROR] Error al exportar estadisticas single a: /ruta/invalida/stats.txt
+[2026-05-22 20:10:16]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:16] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:16] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:16] [ERROR] Error al exportar estadisticas PvP a: /ruta/invalida/stats.txt
+[2026-05-22 20:10:16]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:16] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:27] [ERROR] Error al guardar partida single en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:10:27]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:27] [WARN]  advertencia de prueba
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:27] [ERROR] Error al guardar partida PvP en: /ruta/invalida/no/existe/save.dopo
+[2026-05-22 20:10:27]         Causa: FileNotFoundException - \ruta\invalida\no\existe\save.dopo (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  mensaje de prueba
+[2026-05-22 20:10:27] [ERROR] Error al cargar partida PvP desde: no_existe.dopo
+[2026-05-22 20:10:27]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:27] [ERROR] Error al cargar partida single desde: no_existe.dopo
+[2026-05-22 20:10:27]         Causa: FileNotFoundException - no_existe.dopo (El sistema no puede encontrar el archivo especificado)
+[2026-05-22 20:10:27] [ERROR] error prueba
+[2026-05-22 20:10:27]         Causa: RuntimeException - causa
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single cargada desde: test_save_single.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP guardada en: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida PvP cargada desde: test_save_pvp.dopo
+[2026-05-22 20:10:27] [INFO]  Partida single guardada en: test_save_single.dopo
+[2026-05-22 20:10:27] [ERROR] error simple
+[2026-05-22 20:10:29] [ERROR] error con null
+[2026-05-22 20:10:29] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:29] [ERROR] Error al exportar estadisticas PvM a: /ruta/invalida/stats.txt
+[2026-05-22 20:10:29]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:29] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvP exportadas a: test_stats_pvp.txt
+[2026-05-22 20:10:29] [ERROR] Error al exportar estadisticas single a: /ruta/invalida/stats.txt
+[2026-05-22 20:10:29]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:29] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas PvM exportadas a: test_stats_pvm.txt
+[2026-05-22 20:10:29] [INFO]  Estadisticas single exportadas a: test_stats_single.txt
+[2026-05-22 20:10:30] [ERROR] Error al exportar estadisticas PvP a: /ruta/invalida/stats.txt
+[2026-05-22 20:10:30]         Causa: FileNotFoundException - \ruta\invalida\stats.txt (El sistema no puede encontrar la ruta especificada)
+[2026-05-22 20:10:30] [INFO]  Estadisticas single exportadas a: test_stats_single.txt

@@ -424,4 +424,178 @@ class SpecialElementsTest {
         assertEquals("TIMEOUT", GameState.TIMEOUT);
         assertEquals("DEAD",    GameState.DEAD);
     }
+
+    /** Zone deberia retornar sus dimensiones correctamente. */
+    @Test
+    void shouldZoneReturnCorrectDimensions() {
+        StartZone zone = new StartZone(10, 20, 80, 60);
+        assertEquals(10, zone.getX());
+        assertEquals(20, zone.getY());
+        assertEquals(80, zone.getWidth());
+        assertEquals(60, zone.getHeight());
+    }
+
+    /** Player applyType RED deberia restaurar velocidad y tamano base. */
+    @Test
+    void shouldPlayerApplyTypeRedRestoreBaseStats() {
+        Player p = new Player(100, 100);
+        p.applyType(PlayerType.BLUE);
+        p.applyType(PlayerType.RED);
+        assertEquals(PlayerType.RED, p.getType());
+        assertEquals(PlayerType.RED.speed, p.getSpeed());
+        assertEquals(PlayerType.RED.size, p.getSize());
+    }
+
+    /** Player applyType GREEN deberia activar escudo. */
+    @Test
+    void shouldPlayerApplyTypeGreenActivateShield() {
+        Player p = new Player(100, 100);
+        p.applyType(PlayerType.GREEN);
+        assertTrue(p.isShielded());
+    }
+
+    /** Player grantRespawnInvincibility deberia activar invencibilidad. */
+    @Test
+    void shouldPlayerGrantRespawnInvincibilityActivateInvincibility() {
+        Player p = new Player(100, 100);
+        p.grantRespawnInvincibility();
+        assertTrue(p.absorbHit());
+    }
+
+    /** MachinePlayer EXPERT con paredes en todas direcciones no deberia lanzar excepcion. */
+    @Test
+    void shouldMachinePlayerExpertNotThrowWhenAllDirectionsBlocked() {
+        domain.MachinePlayer machine = new domain.MachinePlayer(400, 240, domain.MachineProfile.EXPERT);
+        machine.setWalls(List.of(
+            new java.awt.Rectangle(0, 0, 800, 500)
+        ));
+        assertDoesNotThrow(() ->
+            machine.updateAI(new java.util.ArrayList<>(), new java.util.ArrayList<>(), 30, 240));
+    }
+
+    /** PatrolEnemy deberia retornar bounds correctos. */
+    @Test
+    void shouldPatrolEnemyReturnCorrectBounds() {
+        PatrolEnemy patrol = new PatrolEnemy(150, 200, 3, new int[][]{{300, 200}});
+        assertEquals(150, patrol.getBounds().x);
+        assertEquals(200, patrol.getBounds().y);
+    }
+
+    /** SliderEnemy deberia retornar bounds correctos. */
+    @Test
+    void shouldSliderEnemyReturnCorrectBounds() {
+        domain.SliderEnemy slider = new domain.SliderEnemy(100, 150, 3, 500);
+        assertEquals(100, slider.getBounds().x);
+        assertEquals(150, slider.getBounds().y);
+    }
+
+    /** GreenCoin deberia retornar bounds correctos. */
+    @Test
+    void shouldGreenCoinReturnCorrectBounds() {
+        GreenCoin gc = new GreenCoin(80, 90);
+        assertEquals(80, gc.getBounds().x);
+        assertEquals(90, gc.getBounds().y);
+    }
+
+    /** LifeSource deberia retornar bounds correctos. */
+    @Test
+    void shouldLifeSourceReturnCorrectBounds() {
+        LifeSource ls = new LifeSource(70, 80);
+        assertEquals(70, ls.getBounds().x);
+        assertEquals(80, ls.getBounds().y);
+    }
+
+    /** CheckpointZone no deberia activarse dos veces. */
+    @Test
+    void shouldCheckpointZoneNotSaveCheckpointTwice() {
+        CheckpointZone cp = new CheckpointZone(100, 100, 80, 60);
+        Player p = new Player(110, 110);
+        cp.checkAndActivate(p);
+        p.setPosition(500, 500);
+        cp.checkAndActivate(p); // segunda llamada, ya activado
+        assertTrue(cp.isActivated());
+    }
+
+    /** CheckpointZone ya activada no deberia sobreescribir checkpoint del jugador. */
+    @Test
+    void shouldCheckpointZoneNotOverwriteCheckpointWhenAlreadyActivated() {
+        CheckpointZone cp = new CheckpointZone(100, 100, 80, 60);
+        Player p = new Player(110, 110);
+        cp.checkAndActivate(p);
+        int savedX = p.getCheckpointX();
+        p.setPosition(110, 110); // vuelve a estar dentro
+        cp.checkAndActivate(p); // ya activado, no debe cambiar nada
+        assertEquals(savedX, p.getCheckpointX());
+    }
+
+    /** GreenCoin colidesWith deberia retornar false cuando ya fue recogida. */
+    @Test
+    void shouldGreenCoinNotCollideWhenAlreadyCollected() {
+        GreenCoin gc = new GreenCoin(100, 100);
+        Player p = new Player(100, 100);
+        gc.collect(p);
+        assertFalse(gc.collidesWith(p));
+    }
+
+    /** GreenCoin colidesWith deberia retornar false cuando jugador esta lejos. */
+    @Test
+    void shouldGreenCoinNotCollideWithPlayerFarAway() {
+        GreenCoin gc = new GreenCoin(100, 100);
+        Player p = new Player(500, 500);
+        assertFalse(gc.collidesWith(p));
+    }
+
+    /** SkinCoin colidesWith deberia retornar false cuando jugador esta lejos. */
+    @Test
+    void shouldSkinCoinNotCollideWithPlayerFarAway() {
+        SkinCoin sc = new SkinCoin(100, 100);
+        Player p = new Player(500, 500);
+        assertFalse(sc.collidesWith(p));
+    }
+
+    /** LifeSource colidesWith deberia retornar false cuando jugador esta lejos. */
+    @Test
+    void shouldLifeSourceNotCollideWithPlayerFarAway() {
+        LifeSource ls = new LifeSource(100, 100);
+        Player p = new Player(500, 500);
+        assertFalse(ls.collidesWith(p));
+    }
+
+    /** GreenCoin colidesWith deberia retornar true cuando jugador esta encima y no recogida. */
+    @Test
+    void shouldGreenCoinCollideWithPlayerAtSamePosition() {
+        GreenCoin gc = new GreenCoin(100, 100);
+        Player p = new Player(100, 100);
+        assertTrue(gc.collidesWith(p));
+    }
+
+    /** SkinCoin colidesWith deberia retornar true cuando jugador esta encima y no recogida. */
+    @Test
+    void shouldSkinCoinCollideWithPlayerAtSamePosition() {
+        SkinCoin sc = new SkinCoin(100, 100);
+        Player p = new Player(100, 100);
+        assertTrue(sc.collidesWith(p));
+    }
+
+    /** LifeSource colidesWith deberia retornar true cuando jugador esta encima y no recogida. */
+    @Test
+    void shouldLifeSourceCollideWithPlayerAtSamePosition() {
+        LifeSource ls = new LifeSource(100, 100);
+        Player p = new Player(100, 100);
+        assertTrue(ls.collidesWith(p));
+    }
+
+    /** Coin colidesWith deberia retornar true cuando jugador esta encima y no recogida. */
+    @Test
+    void shouldCoinCollideWithPlayerAtSamePosition() {
+        Coin c = new Coin(100, 100);
+        Player p = new Player(100, 100);
+        assertTrue(c.collidesWith(p));
+    }
+
+    /** GameLogger.error con excepcion null no deberia lanzar excepcion. */
+    @Test
+    void shouldNotGameLoggerErrorWithNullExceptionThrow() {
+        assertDoesNotThrow(() -> GameLogger.error("error con null", null));
+    }
 }
