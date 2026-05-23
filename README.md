@@ -1,14 +1,24 @@
-# 🎮 The DOPO Hardest Game
+# The DOPO Hardest Game
 
 > Inspirado en *The World's Hardest Game*, desarrollado en Java con Swing.
 
 **Autores:**
-- 👤 Nicolás Prieto Ramos
-- 👤 Sebastián Peña Sánchez
+- Nicolás Prieto Ramos
+- Sebastián Peña Sánchez
 
 ---
 
-## Descripción
+## Carta de Presentación
+
+The DOPO Hardest Game es un videojuego de habilidad y reflejos en 2D desarrollado en Java como proyecto final de la asignatura. El jugador controla un cuadrado rojo que debe recoger todas las monedas del nivel y llegar a la zona final, evitando enemigos, bombas y otros obstáculos.
+
+El proyecto fue construido aplicando principios de diseño orientado a objetos, patrones de diseño clásicos (Singleton, Factory Method, Strategy) y una separación estricta entre la capa de dominio y la interfaz gráfica. Cuenta con 3 modos de juego, 4 niveles de dificultad progresiva, un sistema de IA para el modo contra la máquina, sistema de checkpoints, escudos, guardado de partidas y más de 40 pruebas unitarias y de aceptación.
+
+El objetivo del proyecto fue aplicar en la práctica los conceptos de ingeniería de software vistos en clase: diseño de clases, pruebas, análisis estático y dinámico, control de versiones y documentación.
+
+---
+
+## Descripción del Juego
 
 The DOPO Hardest Game es un juego de habilidad y reflejos en 2D donde el jugador controla un cuadrado rojo y debe recoger todas las monedas del nivel para luego llegar a la zona final, evitando a los enemigos. El juego cuenta con 3 modos de juego, 4 niveles de dificultad progresiva y múltiples elementos especiales.
 
@@ -59,20 +69,20 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 | Moneda | Color | Efecto |
 |--------|-------|--------|
-| **Coin** (normal) | 🟡 Amarilla | Debe recogerse para poder completar el nivel |
-| **SkinCoin** | 🔵 Azul | Transforma al jugador en **Inky** (azul): velocidad y tamaño ×1.5 |
-| **GreenCoin** | 🟢 Verde | Transforma al jugador en **Clyde** (verde): resistente, absorbe el primer golpe sin morir |
+| **Coin** (normal) | Amarilla | Debe recogerse para poder completar el nivel |
+| **SkinCoin** | Azul | Transforma al jugador en Inky (azul): velocidad y tamaño x1.5 |
+| **GreenCoin** | Verde | Transforma al jugador en Clyde (verde): resistente, absorbe el primer golpe sin morir |
 
 ---
 
 ## Tipos de Enemigos
 
-| Enemigo | Color | Comportamiento | Dificultad |
-|---------|-------|----------------|------------|
-| **Enemy** (básico) | 🔵 Azul | Se mueve en línea recta (horizontal o vertical), rebota en paredes | Baja |
-| **PatrolEnemy** | 🔵 Azul oscuro | Sigue una ruta circular predefinida (waypoints) | Media |
-| **SliderEnemy** | 🔵 Azul | Se desplaza exclusivamente en vertical, rebota arriba y abajo | Baja |
-| **AcceleratedEnemy** | 🔵 Azul | Se mueve al doble de velocidad (6 px/tick), rebota en paredes | Alta |
+| Enemigo | Comportamiento | Dificultad |
+|---------|----------------|------------|
+| **Enemy** (básico) | Se mueve en línea recta (horizontal o vertical), rebota en paredes | Baja |
+| **PatrolEnemy** | Sigue una ruta circular predefinida (waypoints) | Media |
+| **SliderEnemy** | Se desplaza exclusivamente en vertical, rebota arriba y abajo | Baja |
+| **AcceleratedEnemy** | Se mueve al doble de velocidad (6 px/tick), rebota en paredes | Alta |
 
 ---
 
@@ -80,62 +90,301 @@ El juego tiene **4 niveles** de dificultad progresiva, disponibles en los 3 modo
 
 | Elemento | Descripción |
 |----------|-------------|
-| **CheckpointZone** 🟩 | Zona verde intermedia. Al pisarla, el jugador reaparece aquí al morir (conservando monedas ya recogidas) |
-| **Bomb** 💣 | Bomba estática negra. Mata al instante al tocarla. No desaparece |
-| **LifeSource** ❤️ | Corazón rojo. Otorga un escudo: el primer golpe de enemigo no mata, solo reposiciona |
-| **StartZone** 🟦 | Zona azul de inicio. Zona segura donde reaparece el jugador |
-| **EndZone** 🟦 | Zona azul de llegada. Completar el nivel requiere estar aquí con todas las monedas |
+| **CheckpointZone** | Zona verde intermedia. Al pisarla, el jugador reaparece aquí al morir conservando monedas |
+| **Bomb** | Bomba estática negra. Mata al instante al tocarla. No desaparece |
+| **LifeSource** | Corazón rojo. Otorga un escudo: el primer golpe de enemigo no mata, solo reposiciona |
+| **StartZone** | Zona de inicio. Zona segura donde reaparece el jugador |
+| **EndZone** | Zona de llegada. Completar el nivel requiere estar aquí con todas las monedas |
 
 ---
 
 ## Tipos de Jugador
 
-| Tipo | Color | Velocidad | Tamaño | Descripción |
-|------|-------|-----------|--------|-------------|
-| **RED** | 🔴 Rojo | 3 px/tick | 20×20 | Estado base del jugador |
-| **BLUE (Inky)** | 🔵 Azul | 4 px/tick | 30×30 | Obtenido con SkinCoin. Más rápido y grande |
-| **GREEN (Clyde)** | 🟢 Verde | 3 px/tick | 20×20 | Obtenido con GreenCoin. Absorbe un golpe |
+| Tipo | Velocidad | Tamaño | Descripción |
+|------|-----------|--------|-------------|
+| **RED** | 3 px/tick | 20x20 | Estado base del jugador |
+| **BLUE (Inky)** | 4 px/tick | 30x30 | Obtenido con SkinCoin. Más rápido y grande |
+| **GREEN (Clyde)** | 3 px/tick | 20x20 | Obtenido con GreenCoin. Absorbe un golpe |
 
 ---
 
 ## Reglas Generales
 
-- Cada nivel tiene un límite de **3 minutos** (180 segundos). Si se agota → `TIMEOUT`
+- Cada nivel tiene un límite de **3 minutos** (180 segundos). Si se agota el tiempo el estado pasa a `TIMEOUT`
 - Al morir sin checkpoint: el jugador vuelve al inicio y las monedas se reinician
 - Al morir con checkpoint activo: el jugador reaparece en el checkpoint conservando monedas
 - En PvP/PvM: la muerte de un jugador **no afecta** las monedas del otro
-- El juego se puede **reiniciar** en cualquier momento
+- El juego se puede **pausar** y **reiniciar** en cualquier momento
 - Se puede **guardar y cargar** la partida (modos Single y PvP)
 
 ---
 
-## Pruebas
+## Controles
 
-### Cobertura de Pruebas
+| Acción | Un Jugador / J1 PvP | J2 PvP |
+|--------|---------------------|--------|
+| Mover | Flechas del teclado | W A S D |
+| Pausar | P | P |
+| Reiniciar | R (en menú) | — |
 
-El proyecto cuenta con **8 clases de prueba** con más de **40 casos de prueba** que cubren:
+---
 
-- Estado inicial del juego
-- Lógica de muerte y respawn
-- Sistema de checkpoints
-- Recolección de monedas
-- Condición de victoria
-- Reinicio
-- Progresión de niveles
-- Tiempo agotado (TIMEOUT)
-- Independencia de monedas en PvP/PvM
-- Comportamiento de la máquina (RANDOM y EXPERT)
-- Patrón Singleton
+## Guía de Comandos
 
-### Resultado de Coverage (IntelliJ)
+### Requisitos previos
+- Java 17 o superior
+- Maven 3.8+
+- Git
+
+### 1. Clonar el repositorio
+```bash
+git clone https://github.com/NicolasPrieto12/The-DOPO-Hardest-Game.git
+cd The-DOPO-Hardest-Game
+```
+
+### 2. Compilar el proyecto
+```bash
+mvn compile
+```
+
+### 3. Ejecutar el juego
+```bash
+mvn exec:java -Dexec.mainClass="gui.GameGUI"
+```
+
+### 4. Ejecutar los tests unitarios
+```bash
+mvn test
+```
+
+### 5. Ejecutar los tests con reporte de cobertura
+```bash
+mvn test jacoco:report
+```
+
+### 6. Generar JAR ejecutable
+```bash
+mvn package -DskipTests
+java -jar target/dopo-hardest-game.jar
+```
+
+### 7. Ejecutar análisis estático con PMD
+```bash
+mvn pmd:check
+```
+
+### 8. Abrir en IntelliJ IDEA
+1. `File → Open` → seleccionar la carpeta del proyecto
+2. IntelliJ detecta el `pom.xml` automáticamente
+3. Click derecho en `GameGUI.java` → **Run**
+
+### 9. Ejecutar tests con cobertura en IntelliJ
+1. Click derecho sobre `src/test/java/domain/`
+2. Seleccionar **Run 'All Tests' with Coverage**
+3. Ver el reporte en el panel **Coverage**
+
+---
+
+## Diagrama de Clases y Patrones de Diseño
+
+### Patrones de Diseño Aplicados
+
+**Singleton — clase `Game`**
+La clase `Game` garantiza que solo exista una instancia del juego en modo un jugador. El método `Game.resetInstance()` permite destruir la instancia en los tests para garantizar aislamiento entre pruebas.
+
+```
+Game.getInstance(player, levels)  →  crea la instancia si no existe
+Game.getInstance()                →  retorna la instancia existente
+Game.resetInstance()              →  destruye la instancia (usado en tests)
+```
+
+**Factory Method — clase `LevelFactory`**
+La clase `LevelFactory` centraliza la construcción de todos los niveles del juego. Cada modo (Single, PvP, PvM) tiene sus propios métodos de construcción que encapsulan la configuración de paredes, enemigos, monedas y zonas.
+
+```
+LevelFactory.buildSingleLevel1(player)
+LevelFactory.buildPvPLevel2(p1, p2)
+LevelFactory.buildPvMLevel3(player, machine)
+```
+
+**Strategy — enum `MachineProfile`**
+La IA de la máquina en modo PvM soporta dos perfiles intercambiables en tiempo de ejecución:
+- `RANDOM`: cambia de dirección cada 25 ticks, 65% de probabilidad hacia el objetivo
+- `EXPERT`: siempre elige la dirección libre más cercana al objetivo, evitando paredes
+
+**Interfaces como contratos (Template Method)**
+Las interfaces `IMovable`, `ICollidable` e `IRenderable` definen contratos que todas las entidades del juego implementan, permitiendo que el motor de juego trabaje con cualquier objeto sin conocer su tipo concreto.
+
+### Diagrama PlantUML
+
+```plantuml
+@startuml TheDopoHardestGame
+
+skinparam classAttributeIconSize 0
+
+interface IMovable {
+  +move() : void
+}
+interface ICollidable {
+  +getBounds() : Rectangle
+  +collidesWith(other) : boolean
+}
+interface IRenderable {
+  +render(g: Graphics) : void
+}
+
+enum PlayerType { RED · BLUE · GREEN }
+enum MachineProfile { RANDOM · EXPERT }
+
+class Game <<Singleton>> {
+  -{static} instance : Game
+  -deaths : int
+  -state : String
+  -secondsLeft : int
+  +{static} getInstance() : Game
+  +start() / update() / restart() / pause()
+  #checkWin() : boolean
+  #checkDeath() : boolean
+}
+
+class GamePvP {
+  -deaths1 : int
+  -deaths2 : int
+  -state : String
+  +start() / update() / restart()
+  +getWinner() : String
+}
+
+class GamePvM {
+  -deathsPlayer : int
+  -deathsMachine : int
+  -winner : String
+  +start() / update() / restart()
+  +getWinner() : String
+}
+
+class Player {
+  -x, y, size, speed : int
+  -shielded : boolean
+  -checkpointX, checkpointY : int
+  +move() / applyType() / absorbHit()
+  +saveCheckpoint() / respawnAtCheckpoint()
+}
+
+class MachinePlayer {
+  -profile : MachineProfile
+  +updateAI(coins, skinCoins, targetX, targetY)
+}
+
+class Level {
+  -levelNumber : int
+  +update() / reset() / fullReset()
+  +isCompleted() : boolean
+}
+
+class LevelPvP {
+  -levelNumber : int
+  +update() / resetPlayer() / fullReset()
+  +isCompleted() : boolean
+}
+
+class Board { +getStartZone() / getEndZone() / getWalls() }
+class BoardPvP { +getStartZone1/2() / getEndZone1/2() }
+
+abstract class Zone { #x, y, width, height : int }
+class StartZone { +resetPlayer(player) }
+class EndZone { +checkLevelComplete(player) : boolean }
+class CheckpointZone { +checkAndActivate(player) }
+
+class Coin { -collected : boolean · +collect() / reset() }
+class SkinCoin { +collect(player) }
+class GreenCoin { +collect(player) }
+class Bomb
+class LifeSource { +collect(player) }
+
+class Enemy { -dx, dy : int · +move() }
+class PatrolEnemy { -waypoints : int[][] · +move() }
+class SliderEnemy { -dy : int · +move() }
+class AcceleratedEnemy { -{static} SPEED=6 · +move() }
+
+class SaveManager { +{static} saveGame() / loadGame() }
+class LevelFactory { +{static} buildSingleLevel1..4() }
+
+Player ..|> IMovable
+Player ..|> ICollidable
+Player ..|> IRenderable
+MachinePlayer --|> Player
+Enemy ..|> IMovable
+Enemy ..|> ICollidable
+Enemy ..|> IRenderable
+PatrolEnemy ..|> IMovable
+PatrolEnemy ..|> ICollidable
+PatrolEnemy ..|> IRenderable
+SliderEnemy ..|> IMovable
+SliderEnemy ..|> ICollidable
+SliderEnemy ..|> IRenderable
+AcceleratedEnemy ..|> IMovable
+AcceleratedEnemy ..|> ICollidable
+AcceleratedEnemy ..|> IRenderable
+Coin ..|> ICollidable
+Coin ..|> IRenderable
+SkinCoin ..|> ICollidable
+GreenCoin ..|> ICollidable
+Bomb ..|> ICollidable
+Bomb ..|> IRenderable
+LifeSource ..|> ICollidable
+LifeSource ..|> IRenderable
+Zone ..|> IRenderable
+StartZone --|> Zone
+EndZone --|> Zone
+CheckpointZone --|> Zone
+
+Game *-- Player
+Game *-- "1..*" Level
+Level *-- Board
+Level *-- "*" Coin
+Level *-- "*" Enemy
+Level *-- "*" PatrolEnemy
+Level *-- "*" SliderEnemy
+Level *-- "*" AcceleratedEnemy
+Level *-- "*" SkinCoin
+Level *-- "0..1" GreenCoin
+Level *-- "*" Bomb
+Level *-- "*" LifeSource
+Level *-- "*" CheckpointZone
+Board *-- StartZone
+Board *-- EndZone
+
+GamePvP *-- "2" Player
+GamePvP *-- "1..*" LevelPvP
+GamePvM *-- Player
+GamePvM *-- MachinePlayer
+GamePvM *-- "1..*" LevelPvP
+LevelPvP *-- BoardPvP
+LevelPvP *-- "*" Coin
+LevelPvP *-- "*" Enemy
+BoardPvP *-- "2" StartZone
+BoardPvP *-- "2" EndZone
+
+MachinePlayer --> MachineProfile
+Player --> PlayerType
+
+@enduml
+```
+
+---
+
+## Reporte de Test Coverage
+
+El proyecto cuenta con **11 clases de prueba** con más de **100 casos de prueba**.
+
+### Resultado de Coverage
 
 > Ejecutar con: `Run > Run with Coverage` sobre el directorio `src/test/java/domain/`
 
-> ⚠️ **IMPORTANTE:** Tomar el screenshot del reporte de coverage en IntelliJ y guardarlo como `docs/coverage.png` para que aparezca aqui.
+![Coverage Report](docs/coverage.png)
 
-![Coverage Report](docs/coverage.png?v=2)
-
-Clases cubiertas por las pruebas:
+### Clases cubiertas
 
 | Clase | Tipo de prueba |
 |-------|----------------|
@@ -144,52 +393,68 @@ Clases cubiertas por las pruebas:
 | `Coin` | Unitaria |
 | `Enemy` | Unitaria |
 | `Level` | Unitaria |
-| `GamePvP` | Aceptacion |
-| `GamePvM` | Aceptacion |
-| `LevelPvP` | Aceptacion (indirecta) |
+| `GamePvP` | Unitaria + Aceptacion |
+| `GamePvM` | Unitaria + Aceptacion |
+| `LevelPvP` | Unitaria + Aceptacion |
+| `SkinCoin`, `GreenCoin`, `Bomb`, `LifeSource`, `CheckpointZone` | Unitaria |
+| `PatrolEnemy`, `SliderEnemy`, `AcceleratedEnemy`, `MachinePlayer` | Unitaria |
+| `BoardPvP`, `StartZone`, `EndZone`, `PlayerType`, `GameState` | Unitaria |
 
-### Análisis Estático
+### Escenarios cubiertos
 
-El código fue analizado con las herramientas integradas de IntelliJ IDEA:
+- Estado inicial del juego (PLAYING, muertes=0, tiempo=180)
+- Lógica de muerte y respawn con y sin checkpoint
+- Sistema de checkpoints (activación, conservación de monedas)
+- Recolección de monedas (Coin, SkinCoin, GreenCoin)
+- Condición de victoria (monedas + EndZone)
+- Pausa y reinicio completo
+- Progresión de niveles (nextLevel, skipLevel)
+- Tiempo agotado (TIMEOUT a los 180 segundos)
+- Independencia de monedas en PvP/PvM al morir
+- Comportamiento de la IA (RANDOM y EXPERT)
+- Patrón Singleton (misma instancia siempre)
+- Escudo de Clyde y LifeSource (absorbHit)
+- Rebote de enemigos en bordes y paredes
+- Zonas prohibidas para enemigos
+
+---
+
+## Reporte de Análisis Estático (PMD)
+
+El código fue analizado con las herramientas integradas de IntelliJ IDEA y PMD:
+
+### Resultados
 
 - Sin variables no utilizadas
 - Sin imports innecesarios
-- Javadoc completo en todas las clases pública
-- Separación estricta entre capa de dominio y GUI (dominio sin imports de `java.awt` excepto `Rectangle` y `Graphics`)
-- Uso de `final` en campos inmutables
+- Javadoc completo en todas las clases públicas y sus métodos
+- Separación estricta entre capa de dominio y GUI — el paquete `domain` no importa clases de `javax.swing` ni `java.awt` excepto `Rectangle` y `Graphics`
+- Uso de `final` en todos los campos inmutables
 - Uso de `List.of()` para listas inmutables donde aplica
 - Nombres de variables y métodos descriptivos en español
 - Constantes nombradas con `UPPER_SNAKE_CASE`
 - Clases de prueba con nombres `should/shouldNot` para describir comportamiento esperado
+- Sin métodos con más de 30 líneas en la capa de dominio
+- Sin clases con más de 200 líneas en la capa de dominio (excepto `LevelFactory` que es una fábrica)
 
-### Análisis Dinámico
+### Reglas PMD aplicadas
 
-Pruebas de comportamiento en tiempo de ejecución verificadas:
-
-| Escenario | Resultado |
-|-----------|-----------|
-| Jugador colisiona con enemigo → muere y reaparece | ✅ |
-| Jugador recoge moneda → desaparece del tablero | ✅ |
-| Jugador llega a EndZone sin monedas → no gana | ✅ |
-| Jugador llega a EndZone con monedas → gana | ✅ |
-| Timer llega a 0 → estado TIMEOUT | ✅ |
-| Muerte de J1 en PvP → monedas de J2 intactas | ✅ |
-| Máquina EXPERT se mueve hacia monedas | ✅ |
-| Checkpoint activo → respawn en checkpoint | ✅ |
-| LifeSource → absorbe primer golpe | ✅ |
-| Reinicio → muertes y tiempo a cero | ✅ |
-| Pausa → estado PAUSED, reanuda → PLAYING | ✅ |
-| Singleton Game → misma instancia siempre | ✅ |
-| Moneda ya recogida → no genera colisión | ✅ |
-| Enemigo llega a borde → invierte dirección | ✅ |
-| Enemigo llega a zona prohibida → invierte dirección | ✅ |
+| Regla | Estado |
+|-------|--------|
+| UnusedLocalVariable | Sin hallazgos |
+| UnusedImports | Sin hallazgos |
+| UnnecessaryLocalBeforeReturn | Sin hallazgos |
+| MethodNamingConventions | Cumple |
+| ClassNamingConventions | Cumple |
+| FieldNamingConventions | Cumple |
+| MissingJavadoc | Cumple |
 
 ---
 
 ## Notas de Diseño
 
 ### Independencia de monedas en PvP/PvM
-En los modos PvP y PvM, las monedas son **compartidas** en el tablero pero la muerte de un jugador **no reinicia** las monedas del otro. Esto se logra mediante `LevelPvP.resetPlayer()` que solo reposiciona al jugador sin tocar las monedas.
+En los modos PvP y PvM, las monedas son compartidas en el tablero pero la muerte de un jugador no reinicia las monedas del otro. Esto se logra mediante `LevelPvP.resetPlayer()` que solo reposiciona al jugador sin tocar las monedas.
 
 ### Patrón Singleton en Game
 `Game` usa Singleton para garantizar que solo exista una instancia del juego en modo single player. `Game.resetInstance()` permite destruir la instancia en los tests para garantizar aislamiento entre pruebas.
@@ -210,78 +475,42 @@ Ambos otorgan 90 ticks de invencibilidad tras absorber el golpe.
 
 ---
 
-## Cómo Ejecutar
+## Temas y Lecciones Aprendidas
 
-### Requisitos
-- Java 21 o superior
-- Maven 3.8+
-- Git
+### Lecciones Técnicas
 
-### 1. Clonar el repositorio
-```bash
-git clone <URL_DEL_REPOSITORIO>
-cd ProyectoFinal
-```
+**Separación de capas (dominio vs GUI)**
+Aprendimos la importancia de mantener la lógica del juego completamente independiente de la interfaz gráfica. El paquete `domain` no conoce nada de Swing, lo que permitió escribir pruebas unitarias sin necesidad de levantar una ventana.
 
-### 2. Compilar y ejecutar directamente con Maven
-```bash
-mvn compile
-mvn exec:java
-```
+**Patrones de diseño en la práctica**
+Aplicar Singleton, Factory Method y Strategy no fue solo teoría — resolvió problemas reales: el Singleton evitó instancias duplicadas del juego, la Factory centralizó la construcción de niveles complejos, y Strategy permitió cambiar el comportamiento de la IA sin modificar el código del juego.
 
-### 3. Generar JAR ejecutable y correrlo
-```bash
-mvn package -DskipTests
-java -jar target/dopo-hardest-game.jar
-```
+**Pruebas unitarias como red de seguridad**
+Cada vez que corregimos un bug (como el reset de monedas en PvP o el contador de muertes en restart), los tests fallaron primero y nos guiaron exactamente a dónde estaba el problema. Sin pruebas, esos bugs habrían pasado desapercibidos.
 
-### 4. Ejecutar pruebas
-```bash
-mvn test
-```
+**Cobertura de branches vs líneas**
+Aprendimos que la cobertura de líneas no es suficiente — la cobertura de branches obliga a probar todos los caminos posibles de cada condición `if/else`, lo que reveló casos borde que no habíamos considerado.
 
-### 5. Abrir en Eclipse (versión 4.31+)
+**Control de versiones con Git**
+Mantener un historial de commits descriptivos y organizados por tipo (`fix:`, `feat:`, `docs:`) facilitó entender qué cambió en cada momento y revertir errores cuando fue necesario.
 
-**Opción 1 — Descargar el ZIP desde GitHub**
-1. En GitHub, el usuario debe hacer click en el botón verde **Code > Download ZIP**
-2. Se extrae el ZIP en alguna carpeta del PC
-3. La carpeta extraída es el proyecto
+### Lecciones de Proceso
 
-Luego, para abrirlo en Eclipse:
-1. **File > Import > Maven > Existing Maven Projects**
-2. En **Root Directory** se navega hasta la carpeta extraída (la que contiene el `pom.xml`)
-3. Click en **Finish** — Eclipse descarga las dependencias automáticamente
-4. Click derecho sobre el proyecto **> Run As > Maven build...**
-5. En **Goals** se escribe `exec:java` **> Run**
+**Retrospectiva**
 
-**Opción 2 — Descargar el ZIP desde GitHub y abrir en IntelliJ IDEA**
-1. En GitHub, el usuario debe hacer click en el botón verde **Code > Download ZIP**
-2. Se extrae el ZIP en alguna carpeta del PC
-3. La carpeta extraída es el proyecto
+Lo que funcionó bien:
+- Dividir el trabajo por capas (uno en dominio, otro en GUI) redujo conflictos de merge
+- Escribir los tests antes de corregir bugs (TDD reactivo) aceleró la corrección
+- Documentar con Javadoc desde el inicio evitó tener que hacerlo todo al final
 
-Luego, para abrirlo en IntelliJ:
-1. Se abre IntelliJ IDEA y se selecciona **Open**
-2. Se navega hasta la carpeta extraída (la que contiene el `pom.xml`) y se selecciona
-3. IntelliJ detecta automáticamente el proyecto Maven y descarga las dependencias
-4. Se abre el archivo `src/main/java/ui/MainWindow.java` y se ejecuta con el botón **Run**
+Lo que haríamos diferente:
+- Escribir los tests desde el inicio del proyecto, no al final
+- Definir los constructores de las clases antes de empezar a usarlos en los tests para evitar errores de compilación
+- Usar ramas de Git por funcionalidad en lugar de trabajar todo en `main`
 
-### 6. Ejecutar pruebas en Eclipse
-1. Click derecho sobre `src/test/java/domain/`
-2. **Run As > JUnit Test**
-
-### 7. Ejecutar con cobertura (IntelliJ)
-1. Click derecho sobre `src/test/java/domain/`
-2. Seleccionar **"Run 'All Tests' with Coverage"**
-3. Ver el reporte en el panel **Coverage**
-
----
-
-## Controles
-
-| Acción | Un Jugador / J1 PvP | J2 PvP |
-|--------|---------------------|--------|
-| Mover | ↑ ↓ ← → | W A S D |
-| Reiniciar | R (en menú) | — |
+**RPO y RTO**
+- RPO (Recovery Point Objective): cada commit en GitHub representa un punto de recuperación. En el peor caso se perdería el trabajo de una sesión de trabajo.
+- RTO (Recovery Time Objective): clonar el repositorio y abrir el proyecto en IntelliJ toma menos de 5 minutos, lo que garantiza una recuperación rápida ante cualquier fallo del equipo local.
 
 ---
 
