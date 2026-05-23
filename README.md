@@ -254,6 +254,17 @@ Luego, para abrirlo en Eclipse:
 4. Click derecho sobre el proyecto **> Run As > Maven build...**
 5. En **Goals** se escribe `exec:java` **> Run**
 
+**Opción 2 — Descargar el ZIP desde GitHub y abrir en IntelliJ IDEA**
+1. En GitHub, el usuario debe hacer click en el botón verde **Code > Download ZIP**
+2. Se extrae el ZIP en alguna carpeta del PC
+3. La carpeta extraída es el proyecto
+
+Luego, para abrirlo en IntelliJ:
+1. Se abre IntelliJ IDEA y se selecciona **Open**
+2. Se navega hasta la carpeta extraída (la que contiene el `pom.xml`) y se selecciona
+3. IntelliJ detecta automáticamente el proyecto Maven y descarga las dependencias
+4. Se abre el archivo `src/main/java/ui/MainWindow.java` y se ejecuta con el botón **Run**
+
 ### 6. Ejecutar pruebas en Eclipse
 1. Click derecho sobre `src/test/java/domain/`
 2. **Run As > JUnit Test**
