@@ -337,25 +337,23 @@ Aprendimos que la cobertura de líneas no es suficiente — la cobertura de bran
 **Control de versiones con Git**
 Mantener un historial de commits descriptivos y organizados por tipo (`fix:`, `feat:`, `docs:`) facilitó entender qué cambió en cada momento y revertir errores cuando fue necesario.
 
-### Lecciones de Proceso
-
 **Retrospectiva**
 
-**¿Cuál es el tiempo total invertido en el proyecto?**
+1. **¿Cuál es el tiempo total invertido en el proyecto?**
 3 semanas.
 
-**¿Cuál es el estado del proyecto?**
+2. **¿Cuál es el estado del proyecto?**
 Completo pero con fallas en el modo Jugador vs Jugador.
 
-**¿Cuáles prácticas XP usamos?**
+3. **¿Cuáles prácticas XP usamos?**
 Pair programming, refactor y simplicity.
 
-**¿Cuál fue el mayor logro?**
+4. **¿Cuál fue el mayor logro?**
 Tener las SkinCoins y hacerlas útiles.
 
-**¿Cuál consideran que fue el mayor problema?**
+5. **¿Cuál consideran que fue el mayor problema?**
 La configuración de la máquina nos pareció muy difícil.
 
-**¿Qué hicimos bien como equipo?**
+6. **¿Qué hicimos bien como equipo?**
 Dividirnos las tareas y los requisitos del proyecto, preguntarle al monitor cuando teníamos dudas y tener en cuenta los consejos del profesor.
 
