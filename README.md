@@ -341,25 +341,21 @@ Mantener un historial de commits descriptivos y organizados por tipo (`fix:`, `f
 
 **Retrospectiva**
 
-Lo que funcionó bien:
-- Dividir el trabajo por capas (uno en dominio, otro en GUI) redujo conflictos de merge
-- Escribir los tests antes de corregir bugs (TDD reactivo) aceleró la corrección
-- Documentar con Javadoc desde el inicio evitó tener que hacerlo todo al final
+**¿Cuál es el tiempo total invertido en el proyecto?**
+3 semanas.
 
-Lo que haríamos diferente:
-- Escribir los tests desde el inicio del proyecto, no al final
-- Definir los constructores de las clases antes de empezar a usarlos en los tests para evitar errores de compilación
-- Usar ramas de Git por funcionalidad en lugar de trabajar todo en `main`
+**¿Cuál es el estado del proyecto?**
+Completo pero con fallas en el modo Jugador vs Jugador.
 
----
+**¿Cuáles prácticas XP usamos?**
+Pair programming, refactor y simplicity.
 
-## Dependencias
+**¿Cuál fue el mayor logro?**
+Tener las SkinCoins y hacerlas útiles.
 
-```xml
-<dependency>
-    <groupId>org.junit.jupiter</groupId>
-    <artifactId>junit-jupiter</artifactId>
-    <version>5.10.0</version>
-    <scope>test</scope>
-</dependency>
-```
+**¿Cuál consideran que fue el mayor problema?**
+La configuración de la máquina nos pareció muy difícil.
+
+**¿Qué hicimos bien como equipo?**
+Dividirnos las tareas y los requisitos del proyecto, preguntarle al monitor cuando teníamos dudas y tener en cuenta los consejos del profesor.
+
