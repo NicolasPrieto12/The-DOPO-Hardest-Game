@@ -8,7 +8,7 @@
 
 ---
 
-## Carta de Presentación
+## Contexto del Proyecto
 
 The DOPO Hardest Game es un videojuego de habilidad y reflejos en 2D desarrollado en Java como proyecto final de la asignatura. El jugador controla un cuadrado rojo que debe recoger todas las monedas del nivel y llegar a la zona final, evitando enemigos, bombas y otros obstáculos.
 
