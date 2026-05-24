@@ -351,10 +351,6 @@ Lo que haríamos diferente:
 - Definir los constructores de las clases antes de empezar a usarlos en los tests para evitar errores de compilación
 - Usar ramas de Git por funcionalidad en lugar de trabajar todo en `main`
 
-**RPO y RTO**
-- RPO (Recovery Point Objective): cada commit en GitHub representa un punto de recuperación. En el peor caso se perdería el trabajo de una sesión de trabajo.
-- RTO (Recovery Time Objective): clonar el repositorio y abrir el proyecto en IntelliJ toma menos de 5 minutos, lo que garantiza una recuperación rápida ante cualquier fallo del equipo local.
-
 ---
 
 ## Dependencias
